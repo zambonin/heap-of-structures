@@ -1,3 +1,4 @@
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
 //! Classe que descreve a pilha.
 /*! Classe que trata das operações relacionadas a pilhas.
 *	\author Gustavo Zambonin, Lucas Ribeiro Neis

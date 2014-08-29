@@ -1,3 +1,4 @@
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
 //! Classe de exceção para estrutura cheia.
 /*! Uma classe que trata exceções quando a estrutura linear
 *	está com seu número máximo de elementos.
