@@ -1,3 +1,4 @@
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
 //! Classe geral de estruturas lineares.
 /*! Classe pai das estruturas básicas de fila e pilha, 
 * 	que trata as operações básicas comuns às estruturas.
@@ -17,7 +18,7 @@ class EstruturaLinear {
  protected:
     //! Vetor básico.
     /*! Vetor usado para armazenar os dados da estrutura linear. */
-    T estrutura[];
+    T *estrutura;
 
     //! Identificador de posição.
     /*! Posição do último elemento da estrutura linear. */
@@ -92,14 +93,14 @@ class EstruturaLinear {
 template <typename T>
 EstruturaLinear<T>::EstruturaLinear() {
     fim = -1;
-    dado = new T[MAX];
+    estrutura = new T[MAX];
     tamanho = MAX;
 }
 
 template <typename T>
 EstruturaLinear<T>::EstruturaLinear(int t) {
 	fim = -1;
-	dado = new T[t];
+	estrutura = new T[t];
 	tamanho = t;
 }
 
