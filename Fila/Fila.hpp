@@ -1,3 +1,4 @@
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
 //! Classe que descreve a fila.
 /*! Classe que trata das operações relacionadas a filas.
 *	\author Gustavo Zambonin, Lucas Ribeiro Neis
@@ -22,7 +23,7 @@ class Fila : EstruturaLinear<T> {
     * \param t o número máximo de elementos no vetor.
     * \sa Fila()
     */
-	Fila<T>(int t);
+	explicit Fila(int t);
 
 	//! Método para adicionar dados à fila.
 	/*!

@@ -1,3 +1,4 @@
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
 //! Classe de exceção para estrutura vazia.
 /*! Uma classe que trata exceções quando a estrutura linear
 *	não tem elementos.
@@ -9,8 +10,6 @@
 #ifndef EXCECAOESTRUTURAVAZIA_H_
 #define EXCECAOESTRUTURAVAZIA_H_
 #include <exception>
-
-using namespace std;
 
 class ExcecaoEstruturaVazia : public exception {
  public:

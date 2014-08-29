@@ -1,3 +1,4 @@
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
 //! Classe que descreve a pilha.
 /*! Classe que trata das operações relacionadas a pilhas.
 *	\author Gustavo Zambonin, Lucas Ribeiro Neis
@@ -22,7 +23,7 @@ class Pilha : EstruturaLinear<T> {
     * \param t o número máximo de elementos no vetor.
     * \sa Pilha()
     */
-	Pilha<T>(int t);
+	explicit Pilha(int t);
 
 	//! Método para adicionar dados à pilha.
 	/*!
