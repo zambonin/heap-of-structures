@@ -13,26 +13,21 @@ class Lista {
 
  	Lista();
  	Lista(int t);
-
  	T adiciona(T dado);
  	T adicionaNoInicio(T dado);
  	T adicionaNaPosicao(T dado, int posicao);
  	T adicionaEmOrdem(T dado);
-
  	T retira();
  	T retiraDoInicio();
  	T retiraDaPosicao(int posicao);
  	T retiraEspecifico(T dado);
-
  	bool listaCheia();
  	bool listaVazia();
  	int posicao(T dado);
  	bool contem(T dado);
-
  	bool maior(T dado1, T dado2);
  	bool menor(T dado1, T dado2);
  	bool igual(T dado1, T dado2);
-
  	void inicializaLista();
  	void destroiLista();
 };
@@ -53,7 +48,7 @@ Lista<T>::Lista(int t) {
 
 template <typename T>
 T Lista<T>::adiciona(T dado) {
-	return adicionaNaPosicao(ultimo);
+	return adicionaNaPosicao(dado, ultimo);
 }
 
 template <typename T>
