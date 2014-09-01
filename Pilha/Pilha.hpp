@@ -23,7 +23,7 @@ class Pilha : EstruturaLinear<T> {
     * \param t o número máximo de elementos no vetor.
     * \sa Pilha()
     */
-	Pilha<T>(int t);
+	explicit Pilha(int t);
 
 	//! Método para adicionar dados à pilha.
 	/*!
