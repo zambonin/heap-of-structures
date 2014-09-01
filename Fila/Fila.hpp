@@ -23,7 +23,7 @@ class Fila : EstruturaLinear<T> {
     * \param t o número máximo de elementos no vetor.
     * \sa Fila()
     */
-	Fila<T>(int t);
+	explicit Fila(int t);
 
 	//! Método para adicionar dados à fila.
 	/*!
