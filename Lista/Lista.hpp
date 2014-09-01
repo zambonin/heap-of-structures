@@ -12,7 +12,7 @@ class Lista {
  	int ultimo;
 
  	Lista();
- 	Lista<T>(int t);
+ 	Lista(int t);
 
  	T adiciona(T dado);
  	T adicionaNoInicio(T dado);
