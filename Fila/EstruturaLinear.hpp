@@ -39,7 +39,7 @@ class EstruturaLinear {
     * \param t o número máximo de elementos no vetor.
     * \sa EstruturaLinear()
     */
-    EstruturaLinear<T>(int t);
+    EstruturaLinear(int t);
 
     //! Método para adicionar dados à estrutura.
     /*! 
