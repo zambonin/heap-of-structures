@@ -5,6 +5,7 @@
 #include "ExcecaoPosicao.h"
 #define MAX 100
 
+template <typename T>
 class Lista {
  public:
  	T* lista;
