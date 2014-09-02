@@ -1,7 +1,7 @@
 #ifndef LISTA_HPP_
 #define LISTA_HPP_
-//#import "ExcecaoListaVazia.h"
-//#import "ExcecaoListaCheia.h"
+#import "ExcecaoListaVazia.h"
+#import "ExcecaoListaCheia.h"
 #import "ExcecaoPosicao.h"
 #define MAX 100
 
