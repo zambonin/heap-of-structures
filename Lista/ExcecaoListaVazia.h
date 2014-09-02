@@ -1,17 +1,19 @@
 //! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
-//! Classe de exceção para estrutura vazia.
-/*! Uma classe que trata exceções quando a estrutura linear
+//! Classe de exceção para lista vazia.
+/*! Uma classe que trata exceções quando a lista
 *	não tem elementos.
 *	\author Gustavo Zambonin, Lucas Ribeiro Neis
-*	\since 28/08/14
+*	\since 02/09/14
 *	\version 1.0
 */
 
-#ifndef EXCECAOESTRUTURAVAZIA_H_
-#define EXCECAOESTRUTURAVAZIA_H_
+#ifndef EXCECAOLISTAVAZIA_H_
+#define EXCECAOLISTAVAZIA_H_
 #include <exception>
 
-class ExcecaoEstruturaVazia : public exception {
+using namespace std;
+
+class ExcecaoListaVazia : public exception {
  public:
     //! Método responsável por descrever o erro relacionado à exceção.
  	/*! 
@@ -19,7 +21,7 @@ class ExcecaoEstruturaVazia : public exception {
  	*/
 
 	virtual const char* what() const throw() {
-		return("Sua estrutura linear está vazia!");
+		return("Sua lista está vaZIA!");
 	}
 };
 
