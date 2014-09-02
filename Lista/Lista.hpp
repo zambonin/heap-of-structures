@@ -1,8 +1,8 @@
 #ifndef LISTA_HPP_
 #define LISTA_HPP_
-#import "ExcecaoListaVazia.h"
-#import "ExcecaoListaCheia.h"
-#import "ExcecaoPosicao.h"
+#include "ExcecaoListaVazia.h"
+#include "ExcecaoListaCheia.h"
+#include "ExcecaoPosicao.h"
 #define MAX 100
 
 class Lista {
