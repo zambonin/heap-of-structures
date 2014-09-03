@@ -2,6 +2,7 @@
 #define LISTA_HPP_
 #include "ExcecaoListaVazia.h"
 #include "ExcecaoListaCheia.h"
+#include "ExcecaoDadoNaoEncontrado.h"
 #include "ExcecaoPosicao.h"
 #define MAX 100
 
@@ -12,25 +13,32 @@ class Lista {
  	int tamanho;
  	int ultimo;
 
- 	Lista();
- 	Lista(int t);
- 	T adiciona(T dado);
- 	T adicionaNoInicio(T dado);
- 	T adicionaNaPosicao(T dado, int posicao);
- 	T adicionaEmOrdem(T dado);
- 	T retira();
- 	T retiraDoInicio();
- 	T retiraDaPosicao(int posicao);
- 	T retiraEspecifico(T dado);
- 	bool listaCheia();
- 	bool listaVazia();
- 	int posicao(T dado);
- 	bool contem(T dado);
- 	bool maior(T dado1, T dado2);
- 	bool menor(T dado1, T dado2);
- 	bool igual(T dado1, T dado2);
- 	void inicializaLista();
- 	void destroiLista();
+ 	Lista();											//ok
+ 	Lista(int t);										//ok
+
+ 	T adiciona(T dado);									//ok
+ 	T adicionaNoInicio(T dado);							//ok
+ 	T adicionaNaPosicao(T dado, int posicao);			//ok
+ 	T adicionaEmOrdem(T dado);							//precisa do algoritmo do professor
+
+ 	T retira();											//ok
+ 	T retiraDoInicio();									//ok
+ 	T retiraDaPosicao(int posicao);						//ok
+ 	T retiraEspecifico(T dado);							//ok
+
+ 	bool listaCheia();									//ok
+ 	bool listaVazia();									//ok
+
+ 	int posicao(T dado);								//ok
+ 	bool contem(T dado);								//ok
+
+ 	bool maior(T dado1, T dado2);						//precisa algoritmo
+ 	bool menor(T dado1, T dado2);						//same
+ 	bool igual(T dado1, T dado2);						//same
+
+ 	bool posicaoInvalida(int p);						//ok
+ 	void inicializaLista();								//ok
+ 	void destroiLista();								//ok
 };
 
 template <typename T>
@@ -49,12 +57,12 @@ Lista<T>::Lista(int t) {
 
 template <typename T>
 T Lista<T>::adiciona(T dado) {
-	return adicionaNaPosicao(dado, ultimo);
+	return adicionaNaPosicao(dado, ultimo + 1);
 }
 
 template <typename T>
 T Lista<T>::adicionaNoInicio(T dado) {
-	return adicionaNaPosicao(0);
+	return adicionaNaPosicao(dado, 0);
 }
 
 template <typename T>
@@ -62,14 +70,14 @@ T Lista<T>::adicionaNaPosicao(T dado, int posicao) {
 	if (listaCheia()) {
 		throw ExcecaoListaCheia();
 	}
-	if (posicaoValida(posicao)) {
+	if (posicaoInvalida(posicao)) {
 		throw ExcecaoPosicao();
 	}
 	ultimo++;
-	for (int i = posicao; i < ultimo; i++) {
-		lista[posicao] = lista[posicao + 1];
+	for (int i = ultimo; i > posicao; i--) {
+		lista[i] = lista[i - 1];
 	}
-	T dado = lista[posicao];
+	lista[posicao] = dado;
 	return dado;
 }
 
@@ -88,20 +96,28 @@ T Lista<T>::retiraDaPosicao(int posicao) {
 	if (listaVazia()) {
 		throw ExcecaoListaVazia();
 	}
-	if (posicaoValida(posicao)) {
+	if (posicaoInvalida(posicao)) {
 		throw ExcecaoPosicao();
 	}
 	ultimo--;
 	T dado = lista[posicao];
-	for (int i = posicao; i < ultimo; i++) {
-		lista[posicao] = lista[posicao - 1];
+	for (int i = posicao; i <= ultimo; i++) {
+		lista[posicao] = lista[posicao + 1];
 	}
 	return dado;
 }
 
 template <typename T>
+T Lista<T>::retiraEspecifico(T dado) {
+	if(listaVazia()) {
+		throw ExcecaoListaVazia();
+	}
+	return retiraDaPosicao(posicao(dado));
+}
+
+template <typename T>
 bool Lista<T>::listaCheia() {
-	return (ultimo = tamanho - 1);
+	return (ultimo == tamanho - 1);
 }
 
 template <typename T>
@@ -110,8 +126,37 @@ bool Lista<T>::listaVazia() {
 }
 
 template <typename T>
-bool Lista<T>::posicaoValida(int p) {
-	return (p > ultimo + 1 || p < 0);
+int Lista<T>::posicao(T dado) {
+	if (listaVazia()) {
+		throw ExcecaoListaVazia();
+	}
+	if (posicaoInvalida(dado)) {
+		throw ExcecaoPosicao();
+	}
+	for (int i = 0; i <= ultimo; i++) {
+		if (dado == lista[i]) {
+			return i;
+		}
+	}
+	throw ExcecaoDadoNaoEncontrado();
+}
+
+template <typename T>
+bool Lista<T>::contem(T dado) {
+	if (listaVazia()) {
+		throw ExcecaoListaVazia();
+	}
+	for (int i = 0; i <= ultimo; i++) {
+		if (dado == lista[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+template <typename T>
+bool Lista<T>::posicaoInvalida(int p) {
+	return !(p <= ultimo + 1 && p >= 0);
 }
 
 template <typename T>

@@ -21,7 +21,7 @@ class ExcecaoListaVazia : public exception {
  	*/
 
 	virtual const char* what() const throw() {
-		return("Sua lista está vaZIA!");
+		return("Sua lista está vazia!");
 	}
 };
 
