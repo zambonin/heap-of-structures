@@ -136,9 +136,9 @@ class Lista {
  	*/
  	bool contem(T dado);
 
- 	bool maior(T dado1, T dado2); //same
- 	bool menor(T dado1, T dado2); //same
- 	bool igual(T dado1, T dado2); //same
+ 	bool maior(T* dado1, T* dado2); //same
+ 	bool menor(T* dado1, T* dado2); //same
+ 	bool igual(T* dado1, T* dado2); //same
 
  	//! Método para checagem de posição inválida solicitada no vetor.
  	/*!
@@ -202,6 +202,21 @@ T Lista<T>::adicionaNaPosicao(T dado, int posicao) {
 }
 
 template <typename T>
+T Lista<T>::adicionaEmOrdem(T dado) {
+	if(listaVazia()){
+		throw ExcecaoListaVazia();
+	}
+	if (listaCheia()) {
+		throw ExcecaoListaCheia();
+	}
+	int posicao = 0;
+	while((posicao <= ultimo) && (maior(&dado, &lista[posicao]))){
+		posicao++;
+	}
+	return adicionaNaPosicao(dado, posicao);
+}
+
+template <typename T>
 T Lista<T>::retira() {
 	return retiraDaPosicao(ultimo);
 }
@@ -250,11 +265,8 @@ int Lista<T>::posicao(T dado) {
 	if (listaVazia()) {
 		throw ExcecaoListaVazia();
 	}
-	if (posicaoInvalida(dado)) {
-		throw ExcecaoPosicao();
-	}
 	for (int i = 0; i <= ultimo; i++) {
-		if (dado == lista[i]) {
+		if (igual(&dado, &lista[i])) {
 			return i;
 		}
 	}
@@ -267,7 +279,7 @@ bool Lista<T>::contem(T dado) {
 		throw ExcecaoListaVazia();
 	}
 	for (int i = 0; i <= ultimo; i++) {
-		if (dado == lista[i]) {
+		if (igual(&dado, &lista[i])) {
 			return true;
 		}
 	}
@@ -288,5 +300,21 @@ template <typename T>
 void Lista<T>::destroiLista() {
 	ultimo = -1;
 }
+
+template <typename T>
+bool Lista<T>::maior(T* dado1, T* dado2){
+	return *dado2 < *dado1;	
+}
+
+template <typename T>
+bool Lista<T>::igual(T* dado1, T* dado2){
+	return *dado1 == *dado2;
+}
+
+template <typename T>
+bool Lista<T>::menor(T* dado1, T* dado2) {
+	return *dado1 < *dado2;
+}
+
 
 #endif
