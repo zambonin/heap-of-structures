@@ -17,148 +17,140 @@
 template <typename T>
 class Lista {
  protected:
- 	//! Vetor básico.
- 	/*! Vetor usado para armazenar os dados da lista. */
- 	T* lista;
+    //! Vetor básico.
+    /*! Vetor usado para armazenar os dados da lista. */
+    T* lista;
 
- 	//! Identificador de posição.
- 	/*! Posição do último elemento da lista. */
- 	int ultimo;
+    //! Identificador de posição.
+    /*! Posição do último elemento da lista. */
+    int ultimo;
 
- 	//! Identificador de tamanho.
- 	/*! Tamanho da lista. */
- 	int tamanho;
-
- 	// POR QUE O ADICIONA RETORNA UM TIPO GENÉRICO????? que doença wtf
+    //! Identificador de tamanho.
+    /*! Tamanho da lista. */
+    int tamanho;
 
  public:
- 	//! Construtor.
+    //! Construtor.
     /*! Construtor básico para a classe, sem parâmetros. */
- 	Lista();
+    Lista();
 
- 	//! Construtor com parâmetros.
+    //! Construtor com parâmetros.
  	/*! Construtor que permite a variabilidade de tamanho da lista. 
  	* \param t o número máximo de elementos no vetor.
  	* \sa Lista()
  	*/
- 	explicit Lista(int t);
+    explicit Lista(int tam);
 
- 	//! Método para adicionar dados à lista.
+    //! Método para adicionar dados à lista.
  	/*!
  	* \param dado um objeto genérico que representa o dado a ser adicionado.
  	* \sa adicionaNoInicio(), adicionaNaPosicao(), adicionaEmOrdem(),
  	* retira(), retiraDoInicio(), retiraDaPosicao(), retiraEspecifico()
  	*/
- 	T adiciona(T dado);
+    void adiciona(T dado);
 
- 	//! Método para adicionar um dado diretamente no início da lista.
+    //! Método para adicionar um dado diretamente no início da lista.
  	/*!
  	* \param dado um objeto genérico que representa o dado a ser adicionado.
  	* \sa adiciona(), adicionaNaPosicao(), adicionaEmOrdem(), retira(),
  	* retiraDoInicio(), retiraDaPosicao(), retiraEspecifico()
  	*/
- 	T adicionaNoInicio(T dado);
+    void adicionaNoInicio(T dado);
 
- 	//! Método para adicionar um dado em uma posição específica.
+    //! Método para adicionar um dado em uma posição específica.
  	/*!
  	* \param dado um objeto genérico que representa o dado a ser adicionado.
  	* \param posicao a posição desejada na forma de número inteiro.
  	* \sa adiciona(), adicionaNoInicio(), adicionaEmOrdem(), retira(),
  	* retiraDoInicio(), retiraDaPosicao(), retiraEspecifico()
  	*/
- 	T adicionaNaPosicao(T dado, int posicao);
+    void adicionaNaPosicao(T dado, int posicao);
 
- 	//! no fucking idea
- 	T adicionaEmOrdem(T dado); //precisa do professor
+    //! no fucking idea
+    void adicionaEmOrdem(T dado);
 
- 	//! Método para retirar dados da lista.
+    //! Método para retirar dados da lista.
  	/*! 
  	* \return um objeto genérico que era o último da lista.
  	* \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(), 
  	* adicionaEmOrdem(), retiraDoInicio(), retiraDaPosicao(), 
  	* retiraEspecifico()
  	*/
- 	T retira();
+    T retira();
 
- 	//! Método para retirar o primeiro dado da lista.
+    //! Método para retirar o primeiro dado da lista.
  	/*!
  	* \return um objeto genérico que era o primeiro da lista.
 	* \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(), 
  	* adicionaEmOrdem(), retira(), retiraDaPosicao(), retiraEspecifico()
  	*/
- 	T retiraDoInicio();
+    T retiraDoInicio();
 
- 	//! Método para retirar um dado em uma posição específica.
+    //! Método para retirar um dado em uma posição específica.
  	/*!
  	* \param posicao a posição desejada na forma de número inteiro.
  	* \return um objeto genérico que tinha como índice a posição indicada.
  	* \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(), 
  	* adicionaEmOrdem(), retiraDoInicio(), retiraEspecifico()
  	*/
- 	T retiraDaPosicao(int posicao);
+    T retiraDaPosicao(int posicao);
 
- 	//! Método para retirar um dado específico.
+    //! Método para retirar um dado específico.
  	/*!
  	* \param dado o dado a ser informado para comparação no vetor.
  	* \return o dado encontrado no vetor de acordo com a comparação.
  	* \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(), 
  	* adicionaEmOrdem(), retiraDoInicio(), retiraDaPosicao(), 
  	*/
- 	T retiraEspecifico(T dado);
+    T retiraEspecifico(T dado);
 
- 	//! Método que mostra se a lista está cheia.
-	/*!
-	* \return um boolean.
-	* \sa listaVazia()
-	*/
- 	bool listaCheia();
-
- 	//! Método que mostra se a lista está vazia.
-	/*!
-	* \return um boolean.
-	* \sa listaCheia()
-	*/
- 	bool listaVazia();
-
- 	//! Método para identificar a posição de um dado específico no vetor.
+    //! Método para identificar a posição de um dado específico no vetor.
  	/*!
  	* \param dado o dado a ser informado para comparação no vetor.
  	* \return a posição do dado indicado.
  	* \sa contem()
  	*/
- 	int posicao(T dado);
+    int posicao(T dado);
 
- 	//! Método para identificar a presença de um dado específico no vetor.r
+    //! Método para identificar a presença de um dado específico no vetor.r
  	/*!
  	* \param dado o dado a ser informado para comparação no vetor.
  	* \return um boolean.
  	* \sa posicao()
  	*/
- 	bool contem(T dado);
+    bool contem(T dado);
 
- 	bool maior(T* dado1, T* dado2); //same
- 	bool menor(T* dado1, T* dado2); //same
- 	bool igual(T* dado1, T* dado2); //same
+    bool igual(T* dado1, T* dado2);
+    bool maior(T* dado1, T* dado2);
+    bool menor(T* dado1, T* dado2);
 
- 	//! Método para checagem de posição inválida solicitada no vetor.
+    //! Método que mostra se a lista está cheia.
+	/*!
+	* \return um boolean.
+	* \sa listaVazia()
+	*/
+    bool listaCheia();
+
+    //! Método que mostra se a lista está vazia.
+	/*!
+	* \return um boolean.
+	* \sa listaCheia()
+	*/
+    bool listaVazia();
+
+    //! Método que destrói a lista.
+ 	/*!
+ 	* \sa inicializaLista()
+ 	*/
+    void destroiLista();
+
+    //! Método para checagem de posição inválida solicitada no vetor.
  	/*!
  	* \param p a posição a ser validada.
  	* \return um boolean.
  	* \sa posicao()
  	*/
- 	bool posicaoInvalida(int p);
-
- 	//! Método que inicializa a lista sem elementos.
-	/*!
-	* \sa destroiLista()
-	*/
- 	void inicializaLista();
-
- 	//! Método que destrói a lista.
- 	/*!
- 	* \sa inicializaLista()
- 	*/
- 	void destroiLista();
+    bool posicaoInvalida(int p);
 };
 
 template <typename T>
@@ -169,24 +161,24 @@ Lista<T>::Lista() {
 }
 
 template <typename T>
-Lista<T>::Lista(int t) {
+Lista<T>::Lista(int tam) {
 	ultimo = -1;
-	lista = new T[t];
-	tamanho = t;
+	lista = new T[tam];
+	tamanho = tam;
 }
 
 template <typename T>
-T Lista<T>::adiciona(T dado) {
+void Lista<T>::adiciona(T dado) {
 	return adicionaNaPosicao(dado, ultimo + 1);
 }
 
 template <typename T>
-T Lista<T>::adicionaNoInicio(T dado) {
+void Lista<T>::adicionaNoInicio(T dado) {
 	return adicionaNaPosicao(dado, 0);
 }
 
 template <typename T>
-T Lista<T>::adicionaNaPosicao(T dado, int posicao) {
+void Lista<T>::adicionaNaPosicao(T dado, int posicao) {
 	if (listaCheia()) {
 		throw ExcecaoListaCheia();
 	}
@@ -198,22 +190,21 @@ T Lista<T>::adicionaNaPosicao(T dado, int posicao) {
 		lista[i] = lista[i - 1];
 	}
 	lista[posicao] = dado;
-	return dado;
 }
 
 template <typename T>
-T Lista<T>::adicionaEmOrdem(T dado) {
-	if(listaVazia()){
+void Lista<T>::adicionaEmOrdem(T dado) {
+	if(listaVazia()) {
 		throw ExcecaoListaVazia();
 	}
 	if (listaCheia()) {
 		throw ExcecaoListaCheia();
 	}
 	int posicao = 0;
-	while((posicao <= ultimo) && (maior(&dado, &lista[posicao]))){
+	while((posicao <= ultimo) && (maior(&dado, &lista[posicao]))) {
 		posicao++;
 	}
-	return adicionaNaPosicao(dado, posicao);
+	adicionaNaPosicao(dado, posicao);
 }
 
 template <typename T>
@@ -279,7 +270,7 @@ bool Lista<T>::contem(T dado) {
 		throw ExcecaoListaVazia();
 	}
 	for (int i = 0; i <= ultimo; i++) {
-		if (igual(&dado, &lista[i])) {
+		if (igual(dado, lista[i])) {
 			return true;
 		}
 	}
@@ -292,22 +283,17 @@ bool Lista<T>::posicaoInvalida(int p) {
 }
 
 template <typename T>
-void Lista<T>::inicializaLista() {
-	ultimo = -1;
-}
-
-template <typename T>
 void Lista<T>::destroiLista() {
 	ultimo = -1;
 }
 
 template <typename T>
-bool Lista<T>::maior(T* dado1, T* dado2){
-	return *dado2 < *dado1;	
+bool Lista<T>::maior(T* dado1, T* dado2) {
+	return *dado2 < *dado1;
 }
 
 template <typename T>
-bool Lista<T>::igual(T* dado1, T* dado2){
+bool Lista<T>::igual(T* dado1, T* dado2) {
 	return *dado1 == *dado2;
 }
 
@@ -315,6 +301,5 @@ template <typename T>
 bool Lista<T>::menor(T* dado1, T* dado2) {
 	return *dado1 < *dado2;
 }
-
 
 #endif
