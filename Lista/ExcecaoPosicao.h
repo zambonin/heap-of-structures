@@ -11,8 +11,6 @@
 #define EXCECAOPOSICAO_H_
 #include <exception>
 
-using namespace std;
-
 class ExcecaoPosicao : public exception {
  public:
     //! Método responsável por descrever o erro relacionado à exceção.
