@@ -11,8 +11,6 @@
 #define EXCECAOLISTACHEIA_H_
 #include <exception>
 
-using namespace std;
-
 class ExcecaoListaCheia : public exception {
  public:
     //! Método responsável por descrever o erro relacionado à exceção.
