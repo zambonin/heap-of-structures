@@ -1,4 +1,4 @@
-//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
+//! Copyright year [2014] <Gustavo Zambonin  Lucas Ribeiro Neis>
 //! Classe que descreve a lista.
 /*! Classe que trata das operações relacionadas a listas.
 *	\author Gustavo Zambonin, Lucas Ribeiro Neis
@@ -16,7 +16,7 @@
 
 template <typename T>
 class Lista {
- protected:
+ public:
     //! Vetor básico.
     /*! Vetor usado para armazenar os dados da lista. */
     T* lista;
@@ -66,7 +66,13 @@ class Lista {
  	*/
     void adicionaNaPosicao(T dado, int posicao);
 
-    //! no fucking idea
+    //! Método para adicionar um dado em uma posição específica
+    //! de acordo com a ordem inerente da classe.
+ 	/*!
+	* \param dado um objeto genérico que representa o dado a ser adicionado.
+	* \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(), retira(),
+ 	* retiraDoInicio(), retiraDaPosicao(), retiraEspecifico()
+	*/
     void adicionaEmOrdem(T dado);
 
     //! Método para retirar dados da lista.
@@ -112,7 +118,7 @@ class Lista {
  	*/
     int posicao(T dado);
 
-    //! Método para identificar a presença de um dado específico no vetor.r
+    //! Método para identificar a presença de um dado específico no vetor.
  	/*!
  	* \param dado o dado a ser informado para comparação no vetor.
  	* \return um boolean.
@@ -120,9 +126,31 @@ class Lista {
  	*/
     bool contem(T dado);
 
-    bool igual(T* dado1, T* dado2);
-    bool maior(T* dado1, T* dado2);
-    bool menor(T* dado1, T* dado2);
+    //! Método de comparação de igualdade entre dois dados.
+    /*!
+	* /param dado1 o primeiro dado a ser comparado.
+	* /param dado2 o segundo dado a ser comparado.
+	* \sa maior(), menor()
+	*/
+    bool igual(T dado1, T dado2);
+
+    //! Método de comparação de maioridade (de acordo com um critério 
+    //! estabelecido pela classe) entre dois dados.
+    /*!
+    * /param dado1 o primeiro dado a ser comparado.
+    * /param dado2 o segundo dado a ser comparado.
+    * \sa igual(), menor()
+    */
+	bool maior(T dado1, T dado2);
+
+    //! Método de comparação de minoridade (de acordo com um critério
+    //! estabelecido pela classe) entre dois dados.
+	/*!
+	* /param dado1 o primeiro dado a ser comparado.
+	* /param dado2 o segundo dado a ser comparado.
+	* \sa igual(), maior()
+	*/
+	bool menor(T dado1, T dado2);
 
     //! Método que mostra se a lista está cheia.
 	/*!
@@ -195,13 +223,14 @@ void Lista<T>::adicionaNaPosicao(T dado, int posicao) {
 template <typename T>
 void Lista<T>::adicionaEmOrdem(T dado) {
 	if(listaVazia()) {
-		throw ExcecaoListaVazia();
+		adicionaNaPosicao(dado, 0);
+		return;
 	}
 	if (listaCheia()) {
 		throw ExcecaoListaCheia();
 	}
 	int posicao = 0;
-	while((posicao <= ultimo) && (maior(&dado, &lista[posicao]))) {
+	while((posicao <= ultimo) && (maior(dado, lista[posicao]))) {
 		posicao++;
 	}
 	adicionaNaPosicao(dado, posicao);
@@ -257,7 +286,7 @@ int Lista<T>::posicao(T dado) {
 		throw ExcecaoListaVazia();
 	}
 	for (int i = 0; i <= ultimo; i++) {
-		if (igual(&dado, &lista[i])) {
+		if (igual(dado, lista[i])) {
 			return i;
 		}
 	}
@@ -288,18 +317,18 @@ void Lista<T>::destroiLista() {
 }
 
 template <typename T>
-bool Lista<T>::maior(T* dado1, T* dado2) {
-	return *dado2 < *dado1;
+bool Lista<T>::maior(T dado1, T dado2) {
+	return dado2 < dado1;
 }
 
 template <typename T>
-bool Lista<T>::igual(T* dado1, T* dado2) {
-	return *dado1 == *dado2;
+bool Lista<T>::igual(T dado1, T dado2) {
+	return dado1 == dado2;
 }
 
 template <typename T>
-bool Lista<T>::menor(T* dado1, T* dado2) {
-	return *dado1 < *dado2;
+bool Lista<T>::menor(T dado1, T dado2) {
+	return dado1 < dado2;
 }
 
 #endif
