@@ -222,10 +222,6 @@ void Lista<T>::adicionaNaPosicao(T dado, int posicao) {
 
 template <typename T>
 void Lista<T>::adicionaEmOrdem(T dado) {
-	if(listaVazia()) {
-		adicionaNaPosicao(dado, 0);
-		return;
-	}
 	if (listaCheia()) {
 		throw ExcecaoListaCheia();
 	}
