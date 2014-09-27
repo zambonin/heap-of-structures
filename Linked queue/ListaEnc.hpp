@@ -124,7 +124,7 @@ class ListaEnc {
 	//! específico na lista encadeada.
  	/*!
  	* \param dado o endereço do objeto genérico a ser comparado.
- 	* \return um inteiro que representa a posição do dado.
+ 	* \return um boolean.
  	* \sa contem(), posicaoMem()
  	*/
 	int posicao(const T& dado) const;

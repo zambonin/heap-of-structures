@@ -1,4 +1,4 @@
-//! Copyright year [2014] <Gustavo Zambonin  Lucas Ribeiro Neis>
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
 //! Classe que descreve a lista.
 /*! Classe que trata das operações relacionadas a listas.
 *	\author Gustavo Zambonin, Lucas Ribeiro Neis
