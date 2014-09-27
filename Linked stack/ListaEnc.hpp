@@ -22,7 +22,7 @@ class ListaEnc {
 	Elemento<T>* cabeca;
 
 	//! Identificador de tamanho.
-	 /*! Tamanho da lista encadeada. */
+	/*! Tamanho da lista encadeada. */
 	int tamanho;
 
  public:
@@ -130,7 +130,7 @@ class ListaEnc {
 	int posicao(const T& dado) const;
 
 	//! Método para retornar a posição na memória de um dado
-	//! especfico na lista encadeada.
+	//! específico na lista encadeada.
 	/*!
 	* \param dado o endereço do objeto genérico a ser comparado.
 	* \return um ponteiro relacionado ao dado específico.
@@ -147,7 +147,6 @@ class ListaEnc {
 	//! Método que mostra se a lista está vazia.
 	/*!
 	* \return um boolean.
-	* \sa listaCheia()
 	*/
 	bool listaVazia() const;
 
