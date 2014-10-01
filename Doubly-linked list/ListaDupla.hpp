@@ -144,7 +144,19 @@ class ListaDupla {
 	*/
 	T* posicaoMemDuplo(const T& dado) const;
 
+	//! Método para retornar a informação contida na posição
+	//! da lista encadeada dupla.
+	/*!
+	* \param pos a posição do dado na lista encadeada dupla.
+	* \return um dado genérico.
+	* \sa posicaoMemDuplo()
+	*/
     T mostra(int pos);
+
+    //! Método para retornar a posição do último elemento na lista.
+    /*!
+    * \return a posição do último elemento na lista.
+    */
     int verUltimo();
 
 	//! Método para eliminar iterativamente cada elemento da lista encadeada.
