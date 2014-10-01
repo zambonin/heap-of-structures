@@ -5,9 +5,9 @@
 * \since 30/09/14
 * \version 1.0
 */
+
 #ifndef LISTACIRC_HPP_
 #define LISTACIRC_HPP_
-#include "Elemento.hpp"
 #include "ListaEnc.hpp"
 
 template<typename T>
