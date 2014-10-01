@@ -38,7 +38,7 @@ class ListaEnc {
 	/*!
 	* \param dado o endereço do objeto genérico a ser adicionado.
 	* \sa adicionaEmOrdem(), adicionaNaPosicao(), adicionaNoInicio(),
-	* eliminaDoInicio(), retira(), retiraEspecifico(), retiraDaPosicao(),
+	* retira(), retiraEspecifico(), retiraDaPosicao(),
 	* retiraDoInicio()
 	*/
 	void adiciona(const T& dado);
@@ -48,7 +48,7 @@ class ListaEnc {
 	/*!
 	* \param dado o endereço do objeto genérico a ser adicionado.
 	* \sa adiciona(), adicionaNaPosicao(), adicionaNoInicio(),
-	* eliminaDoInicio(), retira(), retiraEspecifico(), retiraDaPosicao(),
+	* retira(), retiraEspecifico(), retiraDaPosicao(),
 	* retiraDoInicio()
 	*/
 	void adicionaEmOrdem(const T& dado);
@@ -72,7 +72,6 @@ class ListaEnc {
 
 	//! Método para eliminar o primeiro nó da lista encadeada.
 	/*!
-	* \param dado o endereço do objeto genérico a ser adicionado.
 	* \sa ~ListaEnc()
 	*/
 	void eliminaDoInicio();
@@ -130,7 +129,7 @@ class ListaEnc {
 	int posicao(const T& dado) const;
 
 	//! Método para retornar a posição na memória de um dado
-	//! específico na lista encadeada.
+	//! especfico na lista encadeada.
 	/*!
 	* \param dado o endereço do objeto genérico a ser comparado.
 	* \return um ponteiro relacionado ao dado específico.
@@ -147,6 +146,7 @@ class ListaEnc {
 	//! Método que mostra se a lista está vazia.
 	/*!
 	* \return um boolean.
+	* \sa listaCheia()
 	*/
 	bool listaVazia() const;
 

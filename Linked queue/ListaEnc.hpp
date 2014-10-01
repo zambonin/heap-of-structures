@@ -22,7 +22,7 @@ class ListaEnc {
 	Elemento<T>* cabeca;
 
 	//! Identificador de tamanho.
-	 /*! Tamanho da lista encadeada. */
+	/*! Tamanho da lista encadeada. */
 	int tamanho;
 
  public:
@@ -38,7 +38,7 @@ class ListaEnc {
 	/*!
 	* \param dado o endereço do objeto genérico a ser adicionado.
 	* \sa adicionaEmOrdem(), adicionaNaPosicao(), adicionaNoInicio(),
-	* eliminaDoInicio(), retira(), retiraEspecifico(), retiraDaPosicao(),
+	* retira(), retiraEspecifico(), retiraDaPosicao(),
 	* retiraDoInicio()
 	*/
 	void adiciona(const T& dado);
@@ -48,7 +48,7 @@ class ListaEnc {
 	/*!
 	* \param dado o endereço do objeto genérico a ser adicionado.
 	* \sa adiciona(), adicionaNaPosicao(), adicionaNoInicio(),
-	* eliminaDoInicio(), retira(), retiraEspecifico(), retiraDaPosicao(),
+	* retira(), retiraEspecifico(), retiraDaPosicao(),
 	* retiraDoInicio()
 	*/
 	void adicionaEmOrdem(const T& dado);
@@ -72,7 +72,6 @@ class ListaEnc {
 
 	//! Método para eliminar o primeiro nó da lista encadeada.
 	/*!
-	* \param dado o endereço do objeto genérico a ser adicionado.
 	* \sa ~ListaEnc()
 	*/
 	void eliminaDoInicio();

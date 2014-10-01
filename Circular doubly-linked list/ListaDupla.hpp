@@ -16,7 +16,7 @@
 
 template<typename T>
 class ListaDupla {
- private:
+ protected:
     //! Cabeça da lista encadeada dupla.
 	/*! Elemento que descreve o primeiro nó da lista encadeada dupla. */
     ElementoDuplo<T>* cabeca;
@@ -28,11 +28,11 @@ class ListaDupla {
  public:
     //! Construtor.
     /*! Construtor básico para a classe, sem parâmetros. */
-	ListaDupla();
+	virtual ListaDupla();
 
 	//! Destrutor.
 	/*! Destrutor que deleta todos os nós. */
-    ~ListaDupla();
+    virtual ~ListaDupla();
 
 	//! Método para adicionar um dado no fim da lista encadeada dupla.
 	/*!
@@ -41,7 +41,7 @@ class ListaDupla {
 	* eliminaDoInicioDuplo(), retiraDuplo(), retiraEspecificoDuplo(),
 	* retiraDaPosicaoDuplo(), retiraDoInicioDuplo()
 	*/
-    void adicionaDuplo(const T& dado);
+    virtual void adicionaDuplo(const T& dado);
 
     //! Método para adicionar um dado em uma posição específica
 	//! de acordo com a ordem inerente da classe.
@@ -70,13 +70,13 @@ class ListaDupla {
 	* retiraDuplo(), retiraDaPosicaoDuplo(), retiraDoInicioDuplo(),
 	* retiraEspecificoDuplo()
 	*/
-	void adicionaNoInicioDuplo(const T& dado);
+	virtual void adicionaNoInicioDuplo(const T& dado);
 
 	//! Método para eliminar o primeiro nó da lista encadeada dupla.
 	/*!
 	* \sa ~ListaDupla()
 	*/
-	void eliminaDoInicioDuplo();
+	virtual void eliminaDoInicioDuplo();
 
 	//! Método para retirar dados da lista encadeada dupla.
 	/*!
@@ -104,7 +104,7 @@ class ListaDupla {
  	* adicionaNoInicioDuplo(), retiraDuplo(), retiraDaPosicaoDuplo(),
  	* retiraEspecificoDuplo()
  	*/
-	T retiraDoInicioDuplo();
+	virtual T retiraDoInicioDuplo();
 
 	//! Método para retirar um dado específico.
  	/*!
@@ -162,7 +162,7 @@ class ListaDupla {
 	/*!
 	* \sa ~ListaDupla()
 	*/
-	void destroiListaDuplo();
+	virtual void destroiListaDuplo();
 
 	//! Método que mostra se a lista está vazia.
 	/*!
@@ -408,7 +408,7 @@ int ListaDupla<T>::verUltimo() {
 template<typename T>
 void ListaDupla<T>::destroiListaDuplo() {
 	ElementoDuplo<T>* atual;
-	while (cabeca) {
+	for (int i = 0; i < tamanho; i++) {
 		atual = cabeca;
 		cabeca = cabeca->getProximo();
 		delete atual;
