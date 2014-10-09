@@ -1,21 +1,25 @@
-/**
-* File: ExcecaoSinalVermelho.hpp
-* @author: Emmanuel Podestá, Fernando Paladini.
-* @since: Created on 6 de Setembro de 2014, 20:52.
-* Copyright 2014 Emmanuel Podestá, Fernando Paladini.
-* < Na verdade é Copyleft, MIT License \o/ >
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
+//! Classe que descreve a exceção de sinal vermelho.
+/*! Classe que trata da exceção que ocorre quando um carro chega em um sinal vermelho. 
+* \author Gustavo Zambonin, Lucas Ribeiro Neis
+* \since 09/10/14
+* \version 1.0
 */
+
 #ifndef EXCECAOSINALVERMELHO_HPP_
 #define EXCECAOSINALVERMELHO_HPP_
 #include <exception>
-/** Classe ExcecaoSinalVermelho.
-* A classe ExcecaoSinalVermelho é uma classe de Exceção disparada quando um carro está no semáforo
-* mas este está vermelho.
-*/
-	class ExcecaoSinalVermelho : public std::exception {
+
+class ExcecaoSinalVermelho : public std::exception {
  public:
-		virtual const char* mostrarMensagem() const throw() {
-			return "Exceção Sinal Vermelho: o carro chegou no semáforo mas este está vermelho!";
-		}
-} ExcecaoSinalVermelho;
-#endif /* EXCECAOSINALVERMELHO_HPP_ */
+ 	//! Método responsável por descrever o erro relacionado à exceção.
+ 	/*! 
+ 	* \return um char*.
+ 	*/
+ 	
+	virtual const char* mostrarMensagem() const throw() {
+		return "O semáforo está vermelho.";
+	}
+};
+
+#endif

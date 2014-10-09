@@ -1,148 +1,192 @@
+//! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
+//! Classe que descreve a pista.
+/*! Classe que gerencia uma fila encadeada de carros. 
+* \author Gustavo Zambonin, Lucas Ribeiro Neis
+* \since 09/10/14
+* \version 1.0
+*/
+
 #ifndef PISTA_HPP_
 #define PISTA_HPP_
 #include "Linked/FilaEnc.hpp"
 #include "Carro.hpp"
-#include <iostream>
 #include <cstdio>
-/* Classe Pista
-* Esta classe será responsável por representar uma pista, contendo apenas carros nela.
-*/
+
 class Pista : public FilaEnc<Carro*> {
-private: 
-	int tam, carrosPassaram, carrosEntraram,
-	espacoOcupado, vMedia, atividade, tempoChegada,
-	tempoCriacaoPos, tempoCriacaoNeg;
-	bool fonte, sumidouro;
+ private: 
+ 	//! Identificador de tamanho.
+ 	/*! Descreve o tamanho da fila encadeada de carros. */
+	int tamanho;
 
-public:
-	/* Construtor Pista
-	* Este construtor irá construir uma pista com uma velocidade média, tamanho da pista, se ela
-	* é fonte, se é sumidouro, com o intervalo de criação da pista (quanto que o tempo de criação
-	* varia) e temos como argumento, também, o tempo que uma pista cria um carro.
-	*/
-	Pista(int _tam, int _vMedia, 
-		int _intervaloCriacao, int _tempoCriacao) : FilaEnc<Carro*>() {
-		
-		tam = _tam;
-		espacoOcupado = 0;
-		carrosPassaram = 0;
-		carrosEntraram = 0;
-		vMedia = _vMedia;
-		tempoChegada = tam / _vMedia;
-		tempoCriacaoPos = _tempoCriacao + _intervaloCriacao;
-		tempoCriacaoNeg = _tempoCriacao - _intervaloCriacao;
+	//! Contador de carros que passaram por semáforos.
+	/*! Descreve a quantidade de carros que trocaram de pista. */
+	int carrosQuePassaram;
 
-		// Verifica se a pista é fonte ou sumidouro.
-		if (_intervaloCriacao == 0 && _tempoCriacao == 0) {
-			fonte = false;
-			sumidouro = true;
-		} else {
-			if(_intervaloCriacao == 0 && _tempoCriacao == 1) {
-				fonte = false;
-				sumidouro = false;
-			} else {
-				fonte = true;
-				sumidouro = false;
-			}
-		}
-	}
-	/* Método adicionaCarro
-	* Este método será responsável por adicionar um carro na pista.
-	* @see FilaEnc::inclui
-	* @see Carro::getTamanho
-	*/
-	void adicionaCarro(Carro* c) {
-		int _espacoOcupado = espacoOcupado + c->getTamanho();
-		if (_espacoOcupado <= tam) {
-			this->inclui(c);
-			espacoOcupado = _espacoOcupado;	
-			carrosEntraram++;
- 		}
-	}
-	/* Método removeCarro
-	* Este método irá remover um carro da pista e incrementará o número de carros
-	* que passaram.
-	* @see FilaEnc::retira
-	*/
-	void removeCarro() {
-		try {
-			Carro* carroRetirado = this->retira();
-			carrosPassaram++;
-		} catch (std::exception& e) {
-			std::cout << "Empty queue, no car to be seen " << std::endl;
-		}
-	}
-	/* Método calculeProximoEvento
-	* Calculará quando que o proximo evento irá ocorrer, ou seja, quando que a pista gerará
-	* o próximo carro. Note que quando chamamos este método, o chamador irá tratar se a pista
-	* será fonte ou não.
-	* @param tempoAtual Este método receberá o tempo atual do sistema, para a criação do proximo
-	* evento.
-	* @return atividade Irá retornar o tempo que uma pista cria um carro.
-	*/
-	int calculeProximoEvento(int tempoAtual) {
- 		int tempo = tempoCriacaoNeg + (rand() % (int) (tempoCriacaoPos - 2 + 1));
-		atividade = tempo + tempoAtual;
-		return atividade;
-	}
-	/* Método tempoDeChegada
-	* Este método fará o cálculo do tempo que um carro chega no seu final. Note que o final de uma
-	* pista fonte é o semáforo.
-	* @param tempoNasceu Este método receberá o tempo em que o carro nasceu para calcular o tempo
-	* em que o carro chega no semáforo.
-	* @return tempoNasceu + tempoChegada Operação para o cálculo do tempo de chegada de um carro
-	* final da pista.
-	*/
-	int tempoDeChegada(int tempoNasceu) {
-		return tempoNasceu + tempoChegada;
-	}
-	/* Método estaCheia
-	* Irá retornar se o tamanho do carro mais o espaço já ocupado por outros carros será maior
-	* que o tamanho para que se saiba se uma pista está cheia e não poderá receber mais carros.
-	* @return Retornará um booleano dizendo se o espaço ocupado mais o tamanho do carro é maior
-	* que po tamanho total da pista.
-	*/
-	bool estaCheia(Carro* c) {
-		return espacoOcupado + c->getTamanho() > tam;
-	}
-	/* Método getAtividade
-	* Retornará o tempo da próxima atividade da pista.
-	*/
-	int getAtividade() {
-		return atividade;
-	}
-	/* Método isFonte
-	* Retornará true se a pista for fonte e false, caso contrário.
-	*/
-	bool isFonte() {
-		return fonte;
-	}
-	/* Método isSumidouro
-	* Retornará true se a pista é sumidouro e false, caso contrário.
-	*/
-	bool isSumidouro() {
-		return sumidouro;
-	}
+	//! Contador de carros que entraram no sistema.
+	/*! Descreve a quantidade de carros que foram criados. */
+	int carrosQueEntraram;
 
-	/** Método retorna carros que passaram.
-	* É um método getter para o atributo "numeroCarrosPassaram", que indica quantos carros 
-	* sairam dessa pista. Apenas faz sentido para pistas sumidouro.
-	* @see removeCarro();
-	* @return int Inteiro indicando quantos carros que passaram por essa pista. 
-	*/
-	int retornaCarrosQuePassaram() {
-		return carrosPassaram;
-	}
+	//! Identificador de espaço ocupado.
+	/*! Descreve o espaço ocupado por carros na pista. */
+	int espacoOcupado;
 
-	/** Método retorna carros que entraram.
-	* É um método getter para o atributo "numeroCarrosEntraram", que indica quantos carros 
-	* entraram nessa pista. Apenas faz sentido para pistas fonte.
-	* @see adicionaCarro();
-	* @return int Inteiro indicando quantos carros que entraram nessa pista. 
+	//! Identificador de velocidade média.
+	/*! Descreve a velocidade média da pista. */
+	int velocidadeMedia;
+
+	//! Identificador de tempo de chegada.
+	/*! Descreve o tempo necessário para chegar ao final da pista. */
+	int tempoChegada;
+
+	//! Identificador de tempo de criação positivo.
+	/*! Descreve o máximo tempo do evento para ser criado um carro na pista. */
+	int tempoCriacaoPos;
+
+	//! Identificador de tempo de criação negativo.
+	/*! Descreve o mínimo tempo do evento para ser criado um carro na pista. */
+	int tempoCriacaoNeg;
+
+	//! Identificador de pista fonte.
+	/*! Descreve a habilidade de criação de carros da pista. */
+	bool fonte;
+
+	//! Identificador de pista sumidouro.
+	/*! Descreve a habilidade de deleção de carros da pista. */
+	bool sumidouro;
+
+ public:
+ 	//! Construtor.
+ 	/*! Define as características intrínsecas da pista, fornecidas previamente. */
+	Pista(int _tamanho, int _velocidadeMedia, int _intervaloCriacao, int _tempoCriacao);
+
+	// Método que adiciona um carro na fila encadeada.
+	/*! 
+	* \param carro o ponteiro do carro a ser adicionado.
+	* \sa removeCarro()
 	*/
-	int retornaCarrosQueEntraram() {
-		return carrosEntraram;
-	}
+	void adicionaCarro(Carro* carro);
+
+	//! Método que remove um carro da fila encadeada.
+	/*!
+	* \sa adicionaCarro()
+	*/
+	void removeCarro();
+
+	//! Método que calcula o próximo evento da pista.
+	/*!
+	* \param tempoAtual descreve o tempo do evento atual, necessário para o cálculo.
+	* \return um inteiro.
+	* \sa tempoDeChegada()
+	*/
+	int calculeProximoEvento(int tempoAtual);
+
+	//! Método que calcula o tempo de chegada necessário para o carro completar seu trajeto.
+	/*!
+	* \param tempoNasceu tempo do evento que o carro foi criado.
+	* \return um inteiro.
+	* \sa calculeProximoEvento()
+	*/
+	int tempoDeChegada(int tempoNasceu);
+
+	//! Método que retorna quantos carros passaram por semáforos.
+	/*!
+	* \return um inteiro.
+	* \sa retornaCarrosQueEntraram()
+	*/
+	int retornaCarrosQuePassaram();
+
+	//! Método que retorna quantos carros foram criados pelo sistema.
+	/*!
+	* \return um inteiro.
+	* \sa retornaCarrosQuePassaram()
+	*/
+	int retornaCarrosQueEntraram();
+
+	//! Método que verifica se a pista está cheia.
+	/*!
+	* \param carro o objeto a ser adicionado ao tamanho atual da pista.
+	* \return um boolean.
+	*/
+	bool estaCheia(Carro* carro);
+
+	//! Método que retorna se a pista cria carros.
+	/*!
+	* \return um boolean.
+	* \sa eSumidouro()
+	*/
+	bool eFonte();
+
+	//! Método que retorna se a pista deleta carros.
+	/*!
+	* \return um boolean.
+	* \sa eFonte()
+	*/
+	bool eSumidouro();
 };
+
+Pista::Pista(int _tamanho, int _velocidadeMedia, int _intervaloCriacao, int _tempoCriacao) {
+	tamanho = _tamanho;
+	espacoOcupado = 0;
+	carrosQuePassaram = 0;
+	carrosQueEntraram = 0;
+	velocidadeMedia = _velocidadeMedia;
+	tempoChegada = tamanho / _velocidadeMedia;
+	tempoCriacaoPos = _tempoCriacao + _intervaloCriacao;
+	tempoCriacaoNeg = _tempoCriacao - _intervaloCriacao;
+	if (_intervaloCriacao == 0) {
+	    if (_tempoCriacao == 0) {
+	        fonte = false;
+	    	sumidouro = true;
+		} else if (_tempoCriacao == 1) {
+		    fonte = false;
+		    sumidouro = false;
+		}
+	} else {
+		fonte = true;
+		sumidouro = false;
+	}
+}
+
+void Pista::adicionaCarro(Carro* carro) {
+	int _espacoOcupado = espacoOcupado + carro->getTamanho();
+	if (_espacoOcupado <= tamanho) {
+		this->inclui(carro);
+		espacoOcupado = _espacoOcupado;	
+		carrosQueEntraram++;
+	}
+}
+
+void Pista::removeCarro() {
+	this->retira();
+	carrosQuePassaram++;
+}
+
+int Pista::calculeProximoEvento(int tempoAtual) {
+	return (tempoCriacaoNeg + (rand() % (int) (tempoCriacaoPos - 2 + 1)) + tempoAtual);
+}
+
+int Pista::tempoDeChegada(int tempoNasceu) {
+	return tempoNasceu + tempoChegada;
+}
+
+int Pista::retornaCarrosQuePassaram() {
+	return carrosQuePassaram;
+}
+
+int Pista::retornaCarrosQueEntraram() {
+	return carrosQueEntraram;
+}
+
+bool Pista::estaCheia(Carro* carro) {
+	return espacoOcupado + carro->getTamanho() > tamanho;
+}
+
+bool Pista::eFonte() {
+	return fonte;
+}
+
+bool Pista::eSumidouro() {
+	return sumidouro;
+}
 
 #endif

@@ -11,5 +11,6 @@ int main() {
 	std::cout << "Informe o tempo de abertura do semáforo em segundos: " << std::endl;
 	std::cin >> tempoAberturaSemaforo;
 	Sistema *sistema = new Sistema(tempoAberturaSemaforo, tempoDeExecucao);
-	return sistema->iniciar();
+	sistema->iniciar();
+	return 0;
 }

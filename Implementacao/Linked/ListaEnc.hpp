@@ -185,7 +185,7 @@ class ListaEnc {
 	*/
 	bool menor(T dado1, T dado2);
 
-	 //! Método para checagem de posição inválida solicitada no vetor.
+	//! Método para checagem de posição inválida solicitada no vetor.
  	/*!
  	* \param p a posição a ser validada.
  	* \return um boolean.
@@ -198,8 +198,23 @@ class ListaEnc {
 	* \return um inteiro.
 	*/
 	int getTamanho();
+
+	//! Método para retornar o primeiro elemento da lista encadeada.
+	/*!
+	* \return a cabeça da lista encadeada.
+	*/
 	Elemento<T>* getCabeca(); 
+	
+	//! Método para modificação direta do tamanho da lista encadeada.
+	/*!
+	* \param _tamanho o novo tamanho da lista encadeada.
+	*/
 	void setTamanho(int _tamanho);
+	
+	//! Método para modificação direta da cabeça da lista encadeada.
+	/*!
+	* \param _cabeca a nova cabeça da lista encadeada.
+	*/
 	void setCabeca(Elemento<T>* _cabeca);
 };
 
@@ -244,16 +259,15 @@ void ListaEnc<T>::adicionaNaPosicao(const T& dado, int posicao) {
 	if (posicao == 0) {
 		return adicionaNoInicio(dado);
 	}
-	// Elemento<T>* novo = new Elemento<T>(dado, 0);
-	// if (novo == 0) {
-	// 	throw ExcecaoListaCheia();
-	// }
+	Elemento<T>* novo = new Elemento<T>(dado, 0);
+	if (novo == 0) {
+		throw ExcecaoListaCheia();
+	}
 	Elemento<T>* anterior = cabeca;
 	for (int i = 0; i < posicao - 1; i++) {
 		anterior = anterior->getProximo();
 	}
-	Elemento<T> *novo = new Elemento<T>(dado, anterior->getProximo());
-	// novo->setProximo(anterior->getProximo());
+	novo->setProximo(anterior->getProximo());
 	anterior->setProximo(novo);
 	tamanho++;
 }
