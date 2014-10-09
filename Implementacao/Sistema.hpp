@@ -109,7 +109,7 @@ class Sistema {
         Evento* evento;
         for(int i = 0; i < pistas->getTamanho(); i++) {
             pistaAtual = pistas->mostra(i);
-            if (pistaAtual->isFonte()) {
+            if (pistaAtual->eFonte()) {
                 tempoInterno = tempoAtual;
                 while(tempoInterno < tempoDeExecucao) {
                     tempoProximoEvento = pistaAtual->calculeProximoEvento(tempoInterno);
@@ -187,7 +187,7 @@ class Sistema {
                 }
             } else {
             // Verifica se próxima pista é semaforo ou sumidouro.
-                if (proximaPista->isSumidouro()) { // sumidouro
+                if (proximaPista->eSumidouro()) { // sumidouro
                     tempoProximoEvento = proximaPista->tempoDeChegada(tempoAtual);
                     evento = new Evento(tempoProximoEvento, proximaPista, 0, 3);
                 } else { // semaforo
@@ -260,10 +260,10 @@ class Sistema {
     void contarCarros() {
         for (int i = 0; i < pistas->getTamanho(); i++) {
             Pista* pista = pistas->mostra(i);
-            if (pista->isFonte()) {
+            if (pista->eFonte()) {
                 carrosQueEntraram = carrosQueEntraram + pista->retornaCarrosQueEntraram();
             } else {
-                if (pista->isSumidouro()) {
+                if (pista->eSumidouro()) {
                     carrosQuePassaram = carrosQuePassaram + pista->retornaCarrosQuePassaram();
                 }
             }
