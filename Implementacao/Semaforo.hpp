@@ -39,20 +39,56 @@ class Semaforo {
 	bool aberto;
 	
  public:
+ 	//! Construtor.
+ 	/*! Construtor do objeto que leva todos os atributos descritos 
+  	*   acima para frisar a variabilidade do semáforo. */
 	Semaforo(bool _aberto, Pista* arranjo[], int *_probabilidades, int _tempoIntervalo);
 
+	//! Método que troca o carro de pista.
+	/*!
+	* \return a pista para qual o carro foi trocado.
+	*/ 
 	Pista* passaCarro();
 
+	//! Método que troca o estado de semáforo.
+	/*!
+	* \param tempoAtual o tempo do evento que denota o estado do semáforo.
+	*/
 	void trocarAberto(int tempoAtual);
 
+	//! Método que calcula o próximo evento do semáforo.
+	/*!
+	* \param tempoAtual o tempo do evento que denota o estado do semáforo.
+	* \return um inteiro.
+	*/
 	int calculeProximoEvento(int tempoAtual);
 
+	//! Método que calcula a probabilidade do carro trocar de pista.
+	/*!
+	* \param carro o carro que possui as probabilidades.
+	* \return um inteiro.
+	*/
 	int calculaProbabilidade(Carro* carro);
 
+	//! Método que retorna o intervalo de abertura do semáforo.
+	/*!
+	* \return um inteiro.
+	* \sa retornaPistaLocal(), retornarTempoQueVaiAbrir()
+	*/
 	int retornaIntervalo();
 
+	//! Método que retorna a pista que está aberta para passagem.
+	/*!
+	* \return a pista que está aberta.
+	* \sa retornaIntervalo(), retornaTempoQueVaiAbrir()
+	*/
 	Pista* retornaPistaLocal();
 
+	//! Método que retorna o tempo do próximo evento de abertura.
+	/*!
+	* \return um inteiro.
+	* \sa retornaIntervalo(), retornaPistaLocal()
+	*/
 	int retornarTempoQueVaiAbrir();
 };
 
