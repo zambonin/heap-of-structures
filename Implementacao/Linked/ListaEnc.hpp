@@ -198,6 +198,9 @@ class ListaEnc {
 	* \return um inteiro.
 	*/
 	int getTamanho();
+	Elemento<T>* getCabeca(); 
+	void setTamanho(int _tamanho);
+	void setCabeca(Elemento<T>* _cabeca);
 };
 
 template <typename T>
@@ -418,6 +421,21 @@ bool ListaEnc<T>::posicaoInvalida(int p) {
 template <typename T>
 int ListaEnc<T>::getTamanho() {
 	return this->tamanho;
+}
+
+template <typename T>
+Elemento<T>* ListaEnc<T>::getCabeca() {
+	return this->cabeca;
+}
+
+template <typename T>
+void ListaEnc<T>::setCabeca(Elemento<T>* _cabeca) {
+	this->cabeca = _cabeca;
+}
+
+template <typename T>
+void ListaEnc<T>::setTamanho(int _tamanho) {
+	this->tamanho = _tamanho;
 }
 
 #endif

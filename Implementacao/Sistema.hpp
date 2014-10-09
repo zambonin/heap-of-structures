@@ -11,9 +11,7 @@ class Sistema {
     ListaCirc<Semaforo*>* semaforos;
     ListaCirc<Pista*>* pistas;
     ListaDeEventos* listaEventos;
-    int tempoAtual, tempoSemaforo, tempoDeExecucao;
-    int carrosQuePassaram = 0;
-    int carrosQueEntraram = 0;
+    int tempoAtual, tempoSemaforo, tempoDeExecucao, carrosQuePassaram, carrosQueEntraram;
 
     Sistema(int _tempoSemaforo, int _tempoDeExecucao) {
         this->semaforos = new ListaCirc<Semaforo*>();  
@@ -217,7 +215,6 @@ class Sistema {
         std::cout << "\n=================================================\n\n" << std::endl;
         for(int i = 0; i < listaEventos->getTamanho(); i++) {
             Evento* eventoAtual = listaEventos->retornaDado(i);
-            std::cout << eventoAtual->getTipo() << std::endl;
             std::cout << "\r\t\t" << (tempoAtual * 100) / tempoDeExecucao << "% concluído(s).";
             if(tempoAtual >= tempoDeExecucao){
                 break;
