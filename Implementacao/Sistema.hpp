@@ -175,9 +175,7 @@ class Sistema {
         int tempoProximoEvento = -1;
         try {
             Pista* proximaPista = semaforo->passaCarro();
-            // Se pista destino estiver lotada.
             if (proximaPista == semaforo->retornaPistaLocal()) {
-                // Se tiver tempo para "verificar se a pista destino liberou 1 lugar" antes do sinal fechar, fazer isso.
                 if(tempoAtual < semaforo->retornarTempoQueVaiAbrir()) {
                     tempoProximoEvento = tempoAtual + 1;
                     evento = new Evento(tempoProximoEvento, semaforo, 0, 2);
@@ -186,7 +184,6 @@ class Sistema {
                     evento = new Evento(tempoProximoEvento, semaforo, 0, 2);
                 }
             } else {
-            // Verifica se próxima pista é semaforo ou sumidouro.
                 if (proximaPista->eSumidouro()) { // sumidouro
                     tempoProximoEvento = proximaPista->tempoDeChegada(tempoAtual);
                     evento = new Evento(tempoProximoEvento, proximaPista, 0, 3);
@@ -200,7 +197,6 @@ class Sistema {
             tempoProximoEvento = semaforo->retornarTempoQueVaiAbrir()+1;
             evento = new Evento(tempoProximoEvento, semaforo, 0, 2);
         }
-        // Se o tempo do evento a ser criado > tempoDeExecucao, não precisa criar o evento.
         if(tempoProximoEvento != -1 && tempoProximoEvento <= tempoDeExecucao) {
             listaEventos->adicionaEmOrdem(evento);
         }
