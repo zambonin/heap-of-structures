@@ -1,18 +1,3 @@
-/*
-Ponteiros void
-Random
-Leitura de arquivos
-*/
-/*
-
-tipo   |     descricao do evento
-------------------------------------------------
-0      |    chegada de um novo carro
-1      |    mudança de estado do semáforo
-2      |    chegada de carro no semaforo
-3      |    eEventoclusao do carro 
-
-*/
 #ifndef EVENTO_HPP_
 #define EVENTO_HPP_
 #include "Linked/ListaEnc.hpp"
@@ -24,9 +9,9 @@ public:
   void *objeto;
   void *relacionado;
 
-  Evento(int t, void* o, void* _relacionado, int _tipo) {
-    tempo = t;
-    objeto = o;
+  Evento(int _tempo, void* _objeto, void* _relacionado, int _tipo) {
+    tempo = _tempo;
+    objeto = _objeto;
     tipo = _tipo;
     relacionado = _relacionado;
   }

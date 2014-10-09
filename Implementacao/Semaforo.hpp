@@ -3,8 +3,6 @@
 #include "ExcecaoSinalVermelho.hpp"
 #include "Vector/Lista.hpp"
 #include "Pista.hpp"
-#include <iostream>
-#include <cstdio>
 
 class Semaforo {
  private:
@@ -14,45 +12,41 @@ class Semaforo {
 	int *probabilidades;
 	int tempoQueVaiAbrir; 
 	bool aberto;
+	
  public:
-
-	Semaforo(bool _estaAberto, Pista* arranjo[], int *_probabilidades, int _tempoIntervalo) {
+	Semaforo(bool _aberto, Pista* arranjo[], int *_probabilidades, int _tempoIntervalo) {
 		pistas = new Lista<Pista*>(3);
 		probabilidades = _probabilidades;
 		tempoIntervalo = _tempoIntervalo;
 		tempoQueVaiAbrir = 0;
-		aberto = _estaAberto;
+		aberto = _aberto;
 		pistaLocal = arranjo[0];
-		pistas->adiciona(arranjo[1]);
-		pistas->adiciona(arranjo[2]);
-		pistas->adiciona(arranjo[3]);
+		for (int i = 1; i < 4; i++) {
+		    pistas->adiciona(arranjo[i]);
+		}
 	}
 
 	Pista* passaCarro() {
-		Carro* c = pistaLocal->primeiro();
-		int pistaEscolhida = calculaProbabilidade(c);
+		Carro* carro = pistaLocal->primeiro();
+		int pistaEscolhida = calculaProbabilidade(carro);
 		Pista* proxima = pistas->retornaDado(pistaEscolhida);
-		if(isAberto()) {
-			if (!proxima->estaCheia(c)) {
-				pistaLocal->removeCarro();
-				proxima->adicionaCarro(c);
-				return proxima;
-			} else {
-				proxima = pistaLocal;
-			}
-		} else {
-			throw ExcecaoSinalVermelho;
+		if(!aberto) {
+		    throw ExcecaoSinalVermelho();
 		}
+		if (!proxima->estaCheia(carro)) {
+			pistaLocal->removeCarro();
+			proxima->adicionaCarro(carro);
+			return proxima;
+		} 
+		proxima = pistaLocal;
 		return proxima;
 	}
 
 	void trocarAberto(int tempoAtual) {
 		if (aberto) {
-			aberto = false;
 			calculeProximoEvento(tempoAtual);
-		} else {
-			aberto = true;
 		}
+	    aberto = !aberto;
 	}
 
 	int calculeProximoEvento(int tempoAtual) {
@@ -78,10 +72,6 @@ class Semaforo {
 
 	int retornaIntervalo() {
 		return tempoIntervalo;
-	}
-
-	bool isAberto() {
-		return aberto;
 	}
 
 	Pista* retornaPistaLocal() {
