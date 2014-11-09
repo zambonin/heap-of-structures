@@ -14,8 +14,8 @@
 template<typename T>
 class NoBinario {
  private:
- 	//! Dado de um nó da árvore binária.
- 	/*! Tipo genérico que armazena o conteúdo do nó da árvore binária. */
+    //! Dado de um nó da árvore binária.
+    /*! Tipo genérico que armazena o conteúdo do nó da árvore binária. */
 	T* dado;
 
 	//! Filho à esquerda de um nó.
@@ -39,7 +39,7 @@ class NoBinario {
 	virtual NoBinario<T>* balanco_insere(NoBinario<T>* arv) {
 		return arv;
 	}
-	
+
 	//! Método que verifica se o balanceamento na remoção está correto.
 	/*!
 	* \param arv a árvore a ser verificada.
@@ -51,12 +51,12 @@ class NoBinario {
 	}
 
  public:
- 	//! Construtor.
- 	/*! Construtor que cria um nó com conteúdo novo e dois filhos nulos. */
+    //! Construtor.
+    /*! Construtor que cria um nó com conteúdo novo e dois filhos nulos. */
 	NoBinario<T>(const T& dado): dado(new T(dado)), esquerda(0), direita(0) {}
 
 	//! Destrutor.
-	//! Destrutor que deleta todos os nós. */	
+	//! Destrutor que deleta todos os nós. */
 	virtual ~NoBinario<T>() {}
 
 	//! Método para retornar o conteúdo do nó especificado.
@@ -89,7 +89,7 @@ class NoBinario {
 	* \sa remover()
 	*/
 	NoBinario<T>* inserir(const T& dado, NoBinario<T>* arv);
-	
+
 	//! Método para deleção de um elemento na árvore.
 	/*!
 	* \param dado o endereço do objeto genérico a ser excluído.
