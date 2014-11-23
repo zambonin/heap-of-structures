@@ -8,144 +8,161 @@
 
 #ifndef NOAVL_HPP_
 #define NOAVL_HPP_
-#include "NoBinario.hpp"
-#include "ExcecaoAVL.h"
 
 template <typename T>
-class NoAVL : NoBinario<T> {
+class NoAVL {
  private:
- 	T* dado;
+ 	T dado;
 	NoAVL<T>* esquerda;
 	NoAVL<T>* direita;
  	int altura;
 
- public:
-	NoAVL<T>(const T& dado): dado(new T(dado)), esquerda(0), direita(0) { altura = 0; }
-  	NoAVL<T>* simp_roda_esq(NoAVL<T>* sub);
-  	NoAVL<T>* simp_roda_dir(NoAVL<T>* sub);
-  	NoAVL<T>* dup_roda_esq(NoAVL<T>* sub);
-  	NoAVL<T>* dup_roda_dir(NoAVL<T>* sub);
+ public:	
+	NoAVL(T data); 
+	int height(NoAVL<T>* nodo);
   	int fator(NoAVL<T>* nodo);
+  	void arrumarAltura(NoAVL<T>* nodo);
+  	NoAVL<T>* rotacao_esquerda(NoAVL<T>* raiz);
+  	NoAVL<T>* rotacao_direita(NoAVL<T>* raiz);
+  	NoAVL<T>* rotacao_dupla_esquerda(NoAVL<T>* raiz);
+  	NoAVL<T>* rotacao_dupla_direita(NoAVL<T>* raiz);
+  	NoAVL<T>* balancear(NoAVL<T>* raiz);
+  	NoAVL<T>* minimo(NoAVL<T>* nodo);
+  	NoAVL<T>* removerMinimo(NoAVL<T>* nodo);
   	NoAVL<T>* inserir(const T& dado, NoAVL<T>* nodo);
   	NoAVL<T>* remover(const T& dado, NoAVL<T>* nodo);
 }; 
 
 template <typename T>
-NoAVL<T>* NoAVL<T>::simp_roda_esq(NoAVL<T>* sub) {
-	NoAVL<T>* sub2 = sub->esquerda;
-	sub->esquerda = sub2->direita;
-	sub->direita = sub2;
-	int a = sub->esquerda->altura >= sub->direita->altura ? sub->esquerda->altura : sub->direita->altura;
-	sub->altura++;
-	a = sub2->esquerda->direita >= sub2->direita->altura ? sub2->esquerda->altura : sub->altura;
-	sub2->altura++;
-	return sub2;
+NoAVL<T>::NoAVL(T data) {
+	dado = data;
+	esquerda = direita = 0;
+	altura = 1;
 }
 
 template <typename T>
-NoAVL<T>* NoAVL<T>::simp_roda_dir(NoAVL<T>* sub) {
-	NoAVL<T>* sub2 = sub->direita;
-	sub->direita = sub2->esquerda;
-	sub->esquerda = sub2;
-	int a = sub->esquerda->altura >= sub->direita->altura ? sub->esquerda->altura : sub->direita->altura;
-	sub->altura++;
-	a = sub2->esquerda->altura >= sub2->direita->altura ? sub2->direita->altura : sub->altura;
-	sub2->altura++;
-	return sub2;
-}
-
-template <typename T>
-NoAVL<T>* NoAVL<T>::dup_roda_esq(NoAVL<T>* sub) {
-	sub->esquerda = simp_roda_dir(sub->esquerda);
-	return simp_roda_esq(sub);
-}
-
-template <typename T>
-NoAVL<T>* NoAVL<T>::dup_roda_dir(NoAVL<T>* sub) {
-	sub->direita = simp_roda_esq(sub->direita);
-	return simp_roda_dir(sub);
+int NoAVL<T>::height(NoAVL<T>* nodo) {
+	return nodo ? nodo->altura : 0;
 }
 
 template <typename T>
 int NoAVL<T>::fator(NoAVL<T>* nodo) {
-	return !nodo ? 0 : nodo->esquerda->altura - nodo->direita->altura;
+	return (height(nodo->direita) - height(nodo->esquerda));
+}
+
+template <typename T>
+void NoAVL<T>::arrumarAltura(NoAVL<T>* nodo) {
+	int hL = height(nodo->esquerda);
+	int hR = height(nodo->direita);
+	nodo->altura = (hL > hR ? hL : hR) + 1;
+}
+
+template <typename T>
+NoAVL<T>* NoAVL<T>::rotacao_direita(NoAVL<T>* raiz) {
+	NoAVL<T>* auxiliar = raiz->esquerda;
+	raiz->esquerda = 0;
+	auxiliar->direita = raiz;
+	raiz = auxiliar;
+	arrumarAltura(raiz);
+	arrumarAltura(auxiliar);
+	return raiz;
+}
+
+template <typename T>
+NoAVL<T>* NoAVL<T>::rotacao_esquerda(NoAVL<T>* raiz) {
+	NoAVL<T>* auxiliar = raiz->direita;
+	raiz->direita = 0;
+	auxiliar->esquerda = raiz;
+	raiz = auxiliar;
+	arrumarAltura(raiz);
+	arrumarAltura(auxiliar);
+	return raiz;
+}
+
+template <typename T>
+NoAVL<T>* NoAVL<T>::rotacao_dupla_esquerda(NoAVL<T>* raiz) {
+	raiz->esquerda = rotacao_direita(raiz->esquerda);
+	return rotacao_esquerda(raiz);
+}
+
+template <typename T>
+NoAVL<T>* NoAVL<T>::rotacao_dupla_direita(NoAVL<T>* raiz) {
+	raiz->direita = rotacao_esquerda(raiz->direita);
+	return rotacao_direita(raiz);
+}
+
+template <typename T>
+NoAVL<T>* NoAVL<T>::balancear(NoAVL<T>* raiz) {
+	arrumarAltura(raiz);
+	if (fator(raiz) == 2) {
+		if (fator(raiz->direita) < 0) {
+			// return rotacao_dupla_direita(raiz);
+			raiz->direita = rotacao_direita(raiz->direita);
+		}
+		raiz = rotacao_esquerda(raiz);
+		return raiz;
+	}
+	if (fator(raiz) == -2) {
+		if (fator(raiz->esquerda) > 0) {
+			// return rotacao_dupla_esquerda(raiz);
+			raiz->esquerda = rotacao_esquerda(raiz->esquerda);
+		}
+		raiz = rotacao_direita(raiz);
+		return raiz;
+	}
+	return raiz;
+}
+
+template <typename T>
+NoAVL<T>* NoAVL<T>::minimo(NoAVL<T>* nodo) {
+	return nodo->esquerda ? minimo(nodo->esquerda) : nodo;
+}
+
+template <typename T>
+NoAVL<T>* NoAVL<T>::removerMinimo(NoAVL<T>* nodo) {
+	if (nodo->esquerda == 0) {
+		return nodo->direita;
+	}
+	nodo->esquerda = removerMinimo(nodo->esquerda);
+	return balancear(nodo);
 }
 
 template <typename T>
 NoAVL<T>* NoAVL<T>::inserir(const T& dado, NoAVL<T>* nodo) {
-	if (!nodo) {
+	if (nodo == 0) {
 		return nodo = new NoAVL<T>(dado);
 	}
-	else if (dado < nodo->getDado()) {
-		nodo->esquerda = inserir(nodo->esquerda, dado);
-		if (fator(nodo) == 2) {
-			if (fator(nodo->esquerda) == -1) {
-				nodo->esquerda = simp_roda_esq(nodo->esquerda);
-			}
-			nodo = simp_roda_dir(nodo);
-		}
-	}
-	else if (dado > nodo->getDado()) {
-		nodo->direita = inserir(nodo->direita, dado);
-		if (fator(nodo) == -2) {
-			if (fator(nodo->direita) == 1) {
-				nodo->direita = simp_roda_dir(nodo->direita);
-			}
-			nodo = simp_roda_esq(nodo);
-		}
+	if (dado < nodo->dado) {
+		nodo->esquerda = inserir(dado, nodo->esquerda);
 	} else {
-		throw ExcecaoAVL();
+		nodo->direita = inserir(dado, nodo->direita);
 	}
-	nodo->altura = std::max(nodo->esquerda->altura, nodo->direita->altura) + 1;
+	nodo = balancear(nodo);
 	return nodo;
 }
 
 template <typename T>
 NoAVL<T>* NoAVL<T>::remover(const T& dado, NoAVL<T>* nodo) {
 	if (!nodo) {
-		throw ExcecaoAVL();
+		throw 0;
 	}
-	else if (dado < nodo->getDado()) {
-		nodo->esquerda = inserir(nodo->esquerda, dado);
-		if (fator(nodo) == 2) {
-			if (fator(nodo->esquerda) == -1) {
-				nodo->esquerda = simp_roda_esq(nodo->esquerda);
-			}
-			nodo = simp_roda_dir(nodo);
-		}
-	}
-	else if (dado > nodo->getDado()) {
-		nodo->direita = inserir(nodo->direita, dado);
-		if (fator(nodo) == -2) {
-			if (fator(nodo->direita) == 1) {
-				nodo->direita = simp_roda_dir(nodo->direita);
-			}
-			nodo = simp_roda_esq(nodo);
-		}
+	if (dado < nodo->dado) {
+		nodo->esquerda = remover(dado, nodo->esquerda);
+	} else if (dado > nodo->dado) {
+		nodo->direita = remover(dado, nodo->direita);
 	} else {
-		if (!(nodo->esquerda) && !(nodo->direita)) {
-			delete nodo;
-			return 0;
+		NoAVL<T>* esq = nodo->esquerda;
+		NoAVL<T>* dir = nodo->direita;
+		delete nodo;
+		if (!dir) {
+			return esq;
 		}
-		if (!(nodo->esquerda)) {
-			NoAVL<T>* aux = nodo->direita;
-			delete nodo;
-			return aux;
-		}
-		if (!(nodo->direita)) {
-			NoAVL<T>* aux = nodo->esquerda;
-			delete nodo;
-			return aux;
-		}
-		NoAVL<T>* aux = nodo->direita;
-		while (aux->esquerda) {
-			aux = aux->esquerda;
-		}
-		std::swap(nodo->getDado(), aux->getDado());
-		nodo->direita = remover(nodo->direita, dado);
+		NoAVL<T>* min = minimo(dir);
+		min->direita = removerMinimo(dir);
+		min->esquerda = esq;
+		return balancear(min);
 	}
-	nodo->altura = std::max(nodo->esquerda->altura, nodo->direita->altura) + 1;
-	return nodo;
+	return balancear(nodo);
 }
 
 #endif
