@@ -1,7 +1,6 @@
-UFSC-INE5408
+Various data structures
 =======
 
-Data Structures - 2014/2
 * incomplete tree structures
 * complete linear structures
-* probably shouldn't trust anything that's not commented
+* probably anything that's not commented shouldn't be trusted 
