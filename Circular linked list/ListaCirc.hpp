@@ -1,6 +1,6 @@
 //! Copyright year [2014] <Gustavo Zambonin & Lucas Ribeiro Neis>
 //! Classe que descreve a lista encadeada circular.
-/*! Classe que trata das operações relacionadas a listas circulares. 
+/*! Classe que trata das operações relacionadas a listas circulares.
 * \author Gustavo Zambonin, Lucas Ribeiro Neis
 * \since 30/09/14
 * \version 1.0
@@ -10,7 +10,7 @@
 #define LISTACIRC_HPP_
 #include "ListaEnc.hpp"
 
-template<typename T>
+template <typename T>
 class ListaCirc : public ListaEnc<T> {
  public:
   //! Construtor.
@@ -72,7 +72,7 @@ class ListaCirc : public ListaEnc<T> {
   /*!
   * \param pos a posição desejada na forma de número inteiro.
   * \return um objeto genérico que tinha como índice a posição indicada.
-  * \sa adiciona(), adicionaEmOrdem(), adicionaNaPosicao(), 
+  * \sa adiciona(), adicionaEmOrdem(), adicionaNaPosicao(),
   * adicionaNoInicio(), retira(), retiraDoInicio(), retiraEspecifico()
   */
   T retiraDaPosicao(int pos);
@@ -80,7 +80,7 @@ class ListaCirc : public ListaEnc<T> {
   //! Método para retirar o primeiro dado da lista.
   /*!
   * \return um objeto genérico que era o primeiro da lista.
-  * \sa adiciona(), adicionaEmOrdem(), adicionaNaPosicao(), 
+  * \sa adiciona(), adicionaEmOrdem(), adicionaNaPosicao(),
   * adicionaNoInicio(), retira(), retiraDaPosicao(), retiraEspecifico()
   */
   T retiraDoInicio();
@@ -89,7 +89,7 @@ class ListaCirc : public ListaEnc<T> {
   /*!
   * \param dado o endereço do objeto genérico a ser adicionado.
   * \return o dado encontrado no vetor de acordo com a comparação.
-  * \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(), 
+  * \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(),
   * adicionaEmOrdem(), retira(), retiraDaPosicao(), retiraDoInicio()
   */
   T retiraEspecifico(const T& dado);
@@ -137,20 +137,20 @@ class ListaCirc : public ListaEnc<T> {
   int verUltimo();
 };
 
-template<typename T>
+template <typename T>
 ListaCirc<T>::ListaCirc() {
-    Elemento<T>* sentinela = new Elemento<T>(0, 0);
-    this->cabeca = sentinela;
-    sentinela->setProximo(this->cabeca);
-    this->tamanho = 0;
+  Elemento<T>* sentinela = new Elemento<T>(0, 0);
+  this->cabeca = sentinela;
+  sentinela->setProximo(this->cabeca);
+  this->tamanho = 0;
 }
 
-template<typename T>
+template <typename T>
 void ListaCirc<T>::adiciona(const T& dado) {
-    return adicionaNaPosicao(dado, this->tamanho);
+  return adicionaNaPosicao(dado, this->tamanho);
 }
 
-template<typename T>
+template <typename T>
 void ListaCirc<T>::adicionaEmOrdem(const T& data) {
   if (ListaEnc<T>::listaVazia()) {
     return adicionaNoInicio(data);
@@ -158,7 +158,7 @@ void ListaCirc<T>::adicionaEmOrdem(const T& data) {
   Elemento<T>* atual = this->cabeca->getProximo();
   int posicao = 1;
   while (atual->getProximo() != 0 &&
-        ListaEnc<T>::maior(data, atual->getInfo())) {
+         ListaEnc<T>::maior(data, atual->getInfo())) {
     atual = atual->getProximo();
     posicao++;
   }
@@ -168,7 +168,7 @@ void ListaCirc<T>::adicionaEmOrdem(const T& data) {
   adicionaNaPosicao(data, posicao);
 }
 
-template<typename T>
+template <typename T>
 void ListaCirc<T>::adicionaNaPosicao(const T& dado, int pos) {
   if (ListaEnc<T>::posicaoInvalida(pos)) {
     throw ExcecaoPosicao();
@@ -190,7 +190,7 @@ void ListaCirc<T>::adicionaNaPosicao(const T& dado, int pos) {
   this->tamanho++;
 }
 
-template<typename T>
+template <typename T>
 void ListaCirc<T>::adicionaNoInicio(const T& dado) {
   Elemento<T>* novo = new Elemento<T>(dado, 0);
   if (novo == 0) {
@@ -201,7 +201,7 @@ void ListaCirc<T>::adicionaNoInicio(const T& dado) {
   this->tamanho++;
 }
 
-template<typename T>
+template <typename T>
 void ListaCirc<T>::eliminaDoInicio() {
   if (ListaEnc<T>::listaVazia()) {
     throw ExcecaoListaVazia();
@@ -212,12 +212,12 @@ void ListaCirc<T>::eliminaDoInicio() {
   delete saiu;
 }
 
-template<typename T>
+template <typename T>
 T ListaCirc<T>::retira() {
-    return retiraDaPosicao(this->tamanho);
+  return retiraDaPosicao(this->tamanho);
 }
 
-template<typename T>
+template <typename T>
 T ListaCirc<T>::retiraDaPosicao(int pos) {
   if (ListaEnc<T>::posicaoInvalida(pos)) {
     throw ExcecaoPosicao();
@@ -237,7 +237,7 @@ T ListaCirc<T>::retiraDaPosicao(int pos) {
   return volta;
 }
 
-template<typename T>
+template <typename T>
 T ListaCirc<T>::retiraDoInicio() {
   Elemento<T>* saiu;
   T volta;
@@ -252,15 +252,15 @@ T ListaCirc<T>::retiraDoInicio() {
   return volta;
 }
 
-template<typename T>
+template <typename T>
 T ListaCirc<T>::retiraEspecifico(const T& dado) {
-    if (ListaEnc<T>::listaVazia()) {
-        throw ExcecaoListaVazia();
-    }
+  if (ListaEnc<T>::listaVazia()) {
+    throw ExcecaoListaVazia();
+  }
   return retiraDaPosicao(posicao(dado) + 1);
 }
 
-template<typename T>
+template <typename T>
 bool ListaCirc<T>::contem(const T& dado) {
   if (ListaEnc<T>::listaVazia()) {
     throw ExcecaoListaVazia();
@@ -272,10 +272,10 @@ bool ListaCirc<T>::contem(const T& dado) {
     }
     atual = atual->getProximo();
   }
-    return false;
+  return false;
 }
 
-template<typename T>
+template <typename T>
 int ListaCirc<T>::posicao(const T& dado) const {
   if (ListaEnc<T>::listaVazia()) {
     throw ExcecaoListaVazia();
@@ -290,22 +290,22 @@ int ListaCirc<T>::posicao(const T& dado) const {
   throw ExcecaoDadoNaoEncontrado();
 }
 
-template<typename T>
+template <typename T>
 T* ListaCirc<T>::posicaoMem(const T& dado) const {
-    if (ListaEnc<T>::listaVazia()) {
-        throw ExcecaoListaVazia();
-    }
-    int posicao = this->posicao(dado);
-    Elemento<T>* atual = this->cabeca->getProximo();
-    for (int i = 1; i < posicao; i++) {
-        atual = atual->getProximo();
-    }
-    T volta = atual->getInfo();
-    T* retorno = &volta;
-    return retorno;
+  if (ListaEnc<T>::listaVazia()) {
+    throw ExcecaoListaVazia();
+  }
+  int posicao = this->posicao(dado);
+  Elemento<T>* atual = this->cabeca->getProximo();
+  for (int i = 1; i < posicao; i++) {
+    atual = atual->getProximo();
+  }
+  T volta = atual->getInfo();
+  T* retorno = &volta;
+  return retorno;
 }
 
-template<typename T>
+template <typename T>
 T ListaCirc<T>::mostra(int pos) {
   if (ListaEnc<T>::listaVazia()) {
     throw ExcecaoListaVazia();
@@ -317,7 +317,7 @@ T ListaCirc<T>::mostra(int pos) {
   return atual->getInfo();
 }
 
-template<typename T>
+template <typename T>
 int ListaCirc<T>::verUltimo() {
   return this->tamanho;
 }
