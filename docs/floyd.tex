@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage[colorlinks, urlcolor=blue, citecolor=red]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{color, enumitem, listings}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    numbers=left,
+    showstringspaces=false
+}
+
+\lstset{style=mystyle}
+
+\title{\textbf{Complexidade de algoritmos: cálculo de Floyd}}
+\author{
+    Gustavo Zambonin, Lucas Ribeiro Neis\thanks{
+        \texttt{\{gustavo.zambonin,lucas.neis\}@grad.ufsc.br} \hfill
+        \texttt{\href{https://github.com/zambonin/ufsc-ine5408}{src/}}
+    } \\
+    \small{Estruturas de Dados (UFSC -- INE5408)}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\lstinputlisting[language=C++]{snippet.cpp}
+
+De acordo com a proposta do trabalho, a análise do pseudocódigo acima será
+realizada passo a passo, descrevendo os custos de cada linha detalhadamente.
+
+\begin{enumerate}[label=Linha \arabic*:]
+
+    \item Inicialização da variável \texttt{i}, comparação à variável
+        \texttt{n}, incremento da variável \texttt{i} ($1$ unidade de custo
+        para a inicialização, $n + 1$ para os testes de comparação e $n$
+        para os incrementos): $\mathbf{2n + 2}$
+
+    \item Análogo à linha 1, porém multiplicado pelo número de iterações
+        do laço superior: $\mathbf{2n^2 + 2n}$
+
+    \item Atribuição a uma variável ($1$ unidade de custo para a atribuição,
+        além do número de iterações dos laços superiores, que multiplica o
+        resultado final por $n^2$): $\mathbf{n^2}$
+
+    \item Análogo à linha 3: $\mathbf{n^2}$ \addtocounter{enumi}{3}
+
+    \item Análogo à linha 1: $\mathbf{2n + 2}$
+
+    \item Atribuição a uma variável ($1$ unidade de custo para a atribuição,
+        além do número de iterações do laço superior, que multiplica o
+        resultado final por $n$): $\mathbf{n}$ \addtocounter{enumi}{2}
+
+    \item Análogo à linha 1: $\mathbf{2n + 2}$
+
+    \item Análogo à linha 2: $\mathbf{2n^2 + 2n}$
+
+    \item Análogo à linha 2, porém multiplicado pelo número de iterações
+        dos laços superiores: $\mathbf{2n^3 + 2n^2}$
+
+    \item Soma de duas variáveis, comparação de duas variáveis ($1$ unidade
+        de custo para cada, multiplicado pelo número de iterações dos laços
+        superiores): $\mathbf{2n^3}$
+
+    \item Análogo à linha 15: $\mathbf{2n^3}$
+
+    \item Atribuição a uma variável ($1$ unidade de custo para a atribuição,
+        além do número de iterações dos laços superiores, que multiplica o
+        resultado final por $n^3$): $\mathbf{n^3}$
+
+\end{enumerate}
+
+$2n + 2 + 2n^2 + 2n + n^2 + n^2 + 2n + 2 + n + 2n + 2 + 2n^2 + 2n + 2n^3
++ 2n^2 + 2n^3 + 2n^3 + n^3$
+
+$T(n) = 7n^3 + 8n^2 + 11n + 6 \rightarrow \mathbf{O(n^3)}$
+
+\end{document}
