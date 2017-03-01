@@ -3,7 +3,7 @@
 /*! Classe que gerencia uma fila encadeada de carros.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 09/10/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef PISTA_H_

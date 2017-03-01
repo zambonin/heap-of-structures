@@ -3,7 +3,7 @@
 /*! Classe que opera o elemento da lista encadeada simples.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 14/09/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef ELEMENTO_HPP

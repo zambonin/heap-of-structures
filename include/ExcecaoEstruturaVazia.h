@@ -4,14 +4,14 @@
  * não tem elementos.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 28/08/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef EXCECAOESTRUTURAVAZIA_H_
 #define EXCECAOESTRUTURAVAZIA_H_
 #include <exception>
 
-class ExcecaoEstruturaVazia : public std::exception {
+class ExcecaoEstruturaVazia : std::exception {
  public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!

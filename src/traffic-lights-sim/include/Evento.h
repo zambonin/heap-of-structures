@@ -3,12 +3,11 @@
 /*! Classe que trata das operações relacionadas ao objeto "evento".
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 09/10/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef EVENTO_H_
 #define EVENTO_H_
-
 #include "ListaEnc.hpp"
 
 class Evento {

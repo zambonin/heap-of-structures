@@ -4,14 +4,14 @@
  * não tem elementos.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 02/09/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef EXCECAOLISTAVAZIA_H_
 #define EXCECAOLISTAVAZIA_H_
 #include <exception>
 
-class ExcecaoListaVazia : public std::exception {
+class ExcecaoListaVazia : std::exception {
  public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!

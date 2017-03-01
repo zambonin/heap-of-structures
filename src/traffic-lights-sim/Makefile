@@ -1,4 +1,4 @@
-CXXFLAGS = -O0 -Wall -Wextra -std=c++11 -I include -I .. -I ../../include
+CXXFLAGS = -Wall -Wextra -std=c++11 -I include -I .. -I ../../include
 OUTPUT = simulator
 
 default:

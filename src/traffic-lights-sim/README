@@ -1,0 +1,9 @@
+A traffic lights simulator using simple data structures. It can be compiled
+by typing `make` or `make debug`, if one wants debugging symbols.
+
+Run it with two integer arguments: total execution time units and a delay
+for a given semaphore. The final car throughput sucks, just like real traffic.
+
+    $ ./simulator 1000 1
+
+Original assignment: e538584f85b9b0d5b0a2d2f9da23e0d1275b22ab

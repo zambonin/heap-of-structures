@@ -3,7 +3,7 @@
 /*! Classe que opera o elemento da lista encadeada dupla.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 27/09/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef ELEMENTODUPLO_HPP_

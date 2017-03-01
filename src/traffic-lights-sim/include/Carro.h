@@ -3,7 +3,7 @@
 /*! Classe que trata das operações relacionadas ao objeto "carro".
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 09/10/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef CARRO_H_
