@@ -3,7 +3,7 @@
 /*! Classe que gerencia todos os semáforos, pistas e carros.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 09/10/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef SISTEMA_H_

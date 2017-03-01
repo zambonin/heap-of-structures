@@ -4,14 +4,14 @@
  * tenta manipular um elemento em uma posição inexistente.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 03/09/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef EXCECAOPOSICAO_H_
 #define EXCECAOPOSICAO_H_
 #include <exception>
 
-class ExcecaoPosicao : public std::exception {
+class ExcecaoPosicao : std::exception {
  public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!

@@ -3,7 +3,7 @@
 /*! Classe que gerencia os semáforos, parte essencial no controle de pistas.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 09/10/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef SEMAFORO_H_

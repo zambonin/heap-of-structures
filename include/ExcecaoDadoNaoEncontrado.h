@@ -4,14 +4,14 @@
  * não encontra o elemento solicitado.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 03/09/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef EXCECAODADONAOENCONTRADO_H_
 #define EXCECAODADONAOENCONTRADO_H_
 #include <exception>
 
-class ExcecaoDadoNaoEncontrado : public std::exception {
+class ExcecaoDadoNaoEncontrado : std::exception {
  public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!

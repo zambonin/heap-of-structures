@@ -4,14 +4,14 @@
  * está com seu número máximo de elementos.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 28/08/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef EXCECAOESTRUTURACHEIA_H_
 #define EXCECAOESTRUTURACHEIA_H_
 #include <exception>
 
-class ExcecaoEstruturaCheia : public std::exception {
+class ExcecaoEstruturaCheia : std::exception {
  public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!

@@ -3,7 +3,7 @@
 /*! Classe que trata das operações relacionadas a pilhas encadeadas.
  * \author Gustavo Zambonin, Lucas Ribeiro Neis
  * \since 27/09/14
- * \version 1.0
+ * \version 1.1
  */
 
 #ifndef PILHAENC_HPP_
@@ -12,71 +12,52 @@
 #include "ListaEnc.hpp"
 
 template <typename T>
-class PilhaEnc : private ListaEnc<T> {
+class PilhaEnc : public ListaEnc<T> {
  public:
-  //! Construtor.
-  /*! Construtor para a classe, sem parâmetros. Herdado da classe-pai. */
-  using ListaEnc<T>::ListaEnc;
-
   //! Método para adicionar um dado à pilha encadeada.
   /*!
    * \param dado o endereço do objeto genérico a ser adicionado.
    * \sa desempilha()
    */
-  void empilha(const T& dado);
+  void empilha(const T& dado) {
+    this->adicionaNoInicio(dado);
+  }
 
   //! Método para retirar o último dado da pilha encadeada.
   /*!
    * \return um objeto genérico que era o último da pilha encadeada.
    * \sa empilha()
    */
-  T desempilha();
+  T desempilha() {
+    return this->retiraDoInicio();
+  }
 
   //! Método de identificação do último elemento da pilha encadeada.
   /*!
    * \return o último objeto adicionado à pilha encadeada.
    */
-  T topo();
+  T topo() {
+    if (PilhaVazia()) {
+      throw ExcecaoListaVazia();
+    }
+    return this->cabeca->getInfo();
+  }
 
   //! Método para eliminar iterativamente cada elemento da pilha encadeada.
   /*!
    * \sa ~PilhaEnc()
    */
-  void limparPilha();
+  void limparPilha() {
+    this->destroiLista();
+  }
 
   //! Método que mostra se a pilha está vazia.
   /*!
    * \return um boolean.
    */
-  bool PilhaVazia();
-};
-
-template <typename T>
-void PilhaEnc<T>::empilha(const T& dado) {
-  this->adicionaNoInicio(dado);
-}
-
-template <typename T>
-T PilhaEnc<T>::desempilha() {
-  return this->retiraDoInicio();
-}
-
-template <typename T>
-T PilhaEnc<T>::topo() {
-  if (PilhaVazia()) {
-    throw ExcecaoListaVazia();
+  bool PilhaVazia() {
+    return this->listaVazia();
   }
-  return this->cabeca->getInfo();
-}
-
-template <typename T>
-void PilhaEnc<T>::limparPilha() {
-  this->destroiLista();
-}
-
-template <typename T>
-bool PilhaEnc<T>::PilhaVazia() {
-  return this->listaVazia();
-}
+};
 
 #endif
