@@ -8,3 +8,18 @@ found inside its respective folder. It can be compiled individually by
 typing `make traffic`.
 
 Remove all binaries with `make clean`.
+
+Original assignments:
+  * stack (809450f2bd3ff3087e5ec36994ebddceb460aa8f)
+  * queue (809450f2bd3ff3087e5ec36994ebddceb460aa8f)
+  * list (f6c36704b7fb038ba44d0638031a5bdbec9bc923)
+  * linked list (3c6a3a46eb88ad50c32f6f42815ccb99e1e75001)
+  * linked stack (f07f2b7b7f63679e1948afcdd314408d8b13f6b8)
+  * linked queue (f07f2b7b7f63679e1948afcdd314408d8b13f6b8)
+  * doubly-linked list (4f09bab2d197ce73ad0e20a40c34eea98f2fa9df)
+  * circular linked list (5fe7fd18ff5754e1888567bb068969b7779b8382)
+  * circular doubly-linked list (7d7038da357a36668c63556d83e23c7337b8589c)
+  * binary tree (db01efe7cf822d85300fa95e6d4a22ebdff10d90)
+  * AVL tree (914734661a9e5a84fab5d201f71acd89a1b96447)
+  * red-black tree (914734661a9e5a84fab5d201f71acd89a1b96447)
+  * time complexity (d91a6c2951c40444faf6625efabd1f8b57a01ded)
