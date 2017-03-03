@@ -11,7 +11,7 @@
 #define EXCECAOESTRUTURAVAZIA_H_
 #include <exception>
 
-class ExcecaoEstruturaVazia : std::exception {
+class ExcecaoEstruturaVazia : public std::exception {
  public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!

@@ -296,8 +296,8 @@ class ListaEnc {
 
   //! Método de comparação de igualdade entre dois dados.
   /*!
-   * /param dado1 o primeiro dado a ser comparado.
-   * /param dado2 o segundo dado a ser comparado.
+   * \param dado1 o primeiro dado a ser comparado.
+   * \param dado2 o segundo dado a ser comparado.
    * \sa maior(), menor()
    */
   bool igual(T dado1, T dado2) {
@@ -307,8 +307,8 @@ class ListaEnc {
   //! Método de comparação de maioridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
   /*!
-   * /param dado1 o primeiro dado a ser comparado.
-   * /param dado2 o segundo dado a ser comparado.
+   * \param dado1 o primeiro dado a ser comparado.
+   * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), menor()
    */
   virtual bool maior(T dado1, T dado2) const {
@@ -318,8 +318,8 @@ class ListaEnc {
   //! Método de comparação de minoridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
   /*!
-   * /param dado1 o primeiro dado a ser comparado.
-   * /param dado2 o segundo dado a ser comparado.
+   * \param dado1 o primeiro dado a ser comparado.
+   * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), maior()
    */
   bool menor(T dado1, T dado2) {
