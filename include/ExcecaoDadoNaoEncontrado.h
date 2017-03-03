@@ -11,7 +11,7 @@
 #define EXCECAODADONAOENCONTRADO_H_
 #include <exception>
 
-class ExcecaoDadoNaoEncontrado : std::exception {
+class ExcecaoDadoNaoEncontrado : public std::exception {
  public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!

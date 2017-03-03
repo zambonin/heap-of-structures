@@ -194,17 +194,23 @@ class Lista {
    * \return o dado encontrado no vetor de acordo com a comparação.
    * \sa contem(), posicao()
    */
-  T retornaDado(int posicao) {
+  T retornaDado(int /*posicao*/) {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    return lista[posicao];
+    T dado = lista[0];
+    for (int i = 0; i <= ultimo; i++) {
+      if (igual(dado, lista[i])) {
+        return lista[i];
+      }
+    }
+    throw ExcecaoDadoNaoEncontrado();
   }
 
   //! Método de comparação de igualdade entre dois dados.
   /*!
-   * /param dado1 o primeiro dado a ser comparado.
-   * /param dado2 o segundo dado a ser comparado.
+   * \param dado1 o primeiro dado a ser comparado.
+   * \param dado2 o segundo dado a ser comparado.
    * \sa maior(), menor()
    */
   bool igual(T dado1, T dado2) {
@@ -214,8 +220,8 @@ class Lista {
   //! Método de comparação de maioridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
   /*!
-   * /param dado1 o primeiro dado a ser comparado.
-   * /param dado2 o segundo dado a ser comparado.
+   * \param dado1 o primeiro dado a ser comparado.
+   * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), menor()
    */
   bool maior(T dado1, T dado2) {
@@ -225,8 +231,8 @@ class Lista {
   //! Método de comparação de minoridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
   /*!
-   * /param dado1 o primeiro dado a ser comparado.
-   * /param dado2 o segundo dado a ser comparado.
+   * \param dado1 o primeiro dado a ser comparado.
+   * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), maior()
    */
   bool menor(T dado1, T dado2) {
@@ -266,7 +272,7 @@ class Lista {
    * \sa posicao()
    */
   bool posicaoInvalida(int p) {
-    return !(p <= ultimo + 1 || p >= 0);
+    return !(p <= ultimo + 1 && p >= 0);
   }
 
   //! Método para retornar o tamanho da lista de vetor.

@@ -11,7 +11,7 @@
 #define EXCECAOESTRUTURACHEIA_H_
 #include <exception>
 
-class ExcecaoEstruturaCheia : std::exception {
+class ExcecaoEstruturaCheia : public std::exception {
  public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!
