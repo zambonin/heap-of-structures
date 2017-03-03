@@ -1,0 +1,10 @@
+Small assignments consisting of implementations for various data structures.
+
+Files can be compiled by typing `make` or `make debug`, if one wants
+debugging symbols.
+
+A specific README for an assignment using some of these structures can be
+found inside its respective folder. It can be compiled individually by
+typing `make traffic`.
+
+Remove all binaries with `make clean`.
