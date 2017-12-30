@@ -1,45 +1,41 @@
-\documentclass{article}
+\documentclass{sftex/sftex}
 
-\usepackage[brazil]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[a4paper, margin=1.5cm]{geometry}
-\usepackage[colorlinks, urlcolor=blue, citecolor=red]{hyperref}
-\usepackage[utf8]{inputenc}
-\usepackage{color, enumitem, listings}
+\usepackage{enumitem}
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{blue},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize\ttfamily,
-    breaklines=true,
-    numbers=left,
-    showstringspaces=false
-}
-
-\lstset{style=mystyle}
-
-\title{\textbf{Complexidade de algoritmos: cálculo de Floyd}}
-\author{
-    Gustavo Zambonin, Lucas Ribeiro Neis\thanks{
-        \texttt{\{gustavo.zambonin,lucas.neis\}@grad.ufsc.br} \hfill
-        \texttt{\href{https://github.com/zambonin/ufsc-ine5408}{src/}}
-    } \\
-    \small{Estruturas de Dados (UFSC -- INE5408)}
-}
-\date{}
+\title{Complexidade de algoritmos: cálculo de Floyd}
+\author{Gustavo Zambonin, Lucas Ribeiro Neis}
+\email{\{gustavo.zambonin,lucas.neis\}@grad.ufsc.br}
+\src{https://github.com/zambonin/ufsc-ine5408}
+\uniclass{Estruturas de Dados}
+\classcode{UFSC-INE5408}
 
 \begin{document}
 
 \maketitle
 
-\lstinputlisting[language=C++]{snippet.cpp}
+\begin{lstlisting}[language=C++]
+for (int i = 1; i <= n; i++) {
+  for (int j = 1; j <= n; j++) {
+    A[i][j] = D[i][j];
+    R[i][j] = 0;
+  }
+}
+
+for (int i = 1; i <= n; i++) {
+  A[i][i] = 0;
+}
+
+for (int k = 1; k <= n; k++) {
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      if (A[i][k] + A[k][j] < A[i][j]) {
+        A[i][j] = A[i][k] + A[k][j];
+        R[i][j] = k;
+      }
+    }
+  }
+}
+\end{lstlisting}
 
 De acordo com a proposta do trabalho, a análise do pseudocódigo acima será
 realizada passo a passo, descrevendo os custos de cada linha detalhadamente.

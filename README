@@ -9,6 +9,8 @@ typing `make traffic`.
 
 Remove all binaries with `make clean`.
 
+The LaTeX document needs the `enumitem` package to be compiled correctly.
+
 Original assignments:
   * stack (809450f2bd3ff3087e5ec36994ebddceb460aa8f)
   * queue (809450f2bd3ff3087e5ec36994ebddceb460aa8f)
