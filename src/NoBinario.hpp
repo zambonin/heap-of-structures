@@ -10,24 +10,23 @@
 #define NOBINARIO_HPP_
 #include <vector>
 
-template <typename T>
-class NoBinario {
- private:
+template <typename T> class NoBinario {
+private:
   //! Dado de um nó da árvore binária.
   /*! Tipo genérico que armazena o conteúdo do nó da árvore binária. */
-  T* dado;
+  T *dado;
 
   //! Filho à esquerda de um nó.
   /*! Nó que descreve o filho à esquerda em relação ao nó atual. */
-  NoBinario<T>* esquerda;
+  NoBinario<T> *esquerda;
 
   //! Filho à direita de um nó.
   /*! Nó que descreve o filho à direita em relação ao nó atual. */
-  NoBinario<T>* direita;
+  NoBinario<T> *direita;
 
   //! Vetor de elementos da árvore.
   /*! Estrutura vetorial que armazena todos os nós de uma árvore. */
-  std::vector<NoBinario<T> > elementos;
+  std::vector<NoBinario<T>> elementos;
 
   //! Método que verifica se o balanceamento na inserção está correto.
   /*!
@@ -35,9 +34,7 @@ class NoBinario {
    * \return o ponteiro da árvore modificada.
    * \sa balanco_remove()
    */
-  virtual NoBinario<T>* balanco_insere(NoBinario<T>* arv) {
-    return arv;
-  }
+  virtual NoBinario<T> *balanco_insere(NoBinario<T> *arv) { return arv; }
 
   //! Método que verifica se o balanceamento na remoção está correto.
   /*!
@@ -45,15 +42,13 @@ class NoBinario {
    * \return o ponteiro da árvore modificada.
    * \sa balanco_insere()
    */
-  virtual NoBinario<T>* balanco_remove(NoBinario<T>* arv) {
-    return arv;
-  }
+  virtual NoBinario<T> *balanco_remove(NoBinario<T> *arv) { return arv; }
 
- public:
+public:
   //! Construtor.
   /*! Construtor que cria um nó com conteúdo novo e dois filhos nulos. */
-  explicit NoBinario<T>(const T& dado)
-    : dado(new T(dado)), esquerda(nullptr), direita(nullptr) {}
+  explicit NoBinario<T>(const T &dado)
+      : dado(new T(dado)), esquerda(nullptr), direita(nullptr) {}
 
   //! Destrutor.
   //! Destrutor que deleta todos os nós. */
@@ -64,18 +59,14 @@ class NoBinario {
    * \return o ponteiro de um tipo genérico.
    * \sa getElementos()
    */
-  T* getDado() {
-    return dado;
-  }
+  T *getDado() { return dado; }
 
   //! Método para retornar o conteúdo da árvore inteira.
   /*!
    * \return o ponteiro da árvore de tipos genéricos.
    * \sa getDado()
    */
-  NoBinario<T>* getElementos() {
-    return elementos.data();
-  }
+  NoBinario<T> *getElementos() { return elementos.data(); }
 
   //! Método para buscar um elemento na árvore.
   /*!
@@ -83,7 +74,7 @@ class NoBinario {
    * \param arv o ponteiro da árvore a ser varrida.
    * \return o ponteiro do dado genérico buscado.
    */
-  T* busca(const T& dado, NoBinario<T>* arv) {
+  T *busca(const T &dado, NoBinario<T> *arv) {
     while (arv && arv->getDado() != dado) {
       if (arv->getDado() < dado) {
         arv = arv->direita;
@@ -101,7 +92,7 @@ class NoBinario {
    * \return o ponteiro da árvore de tipos genéricos.
    * \sa remover()
    */
-  NoBinario<T>* inserir(const T& dado, NoBinario<T>* arv) {
+  NoBinario<T> *inserir(const T &dado, NoBinario<T> *arv) {
     auto novo = new NoBinario<T>(dado);
     if (dado < *arv->getDado()) {
       if (arv->esquerda == nullptr) {
@@ -126,7 +117,7 @@ class NoBinario {
    * \return o ponteiro da árvore de tipos genéricos.
    * \sa inserir()
    */
-  NoBinario<T>* remover(const T& dado, NoBinario<T>* arv) {
+  NoBinario<T> *remover(const T &dado, NoBinario<T> *arv) {
     if (arv == nullptr) {
       return arv;
     }
@@ -164,11 +155,11 @@ class NoBinario {
    * \param nodo o ponteiro da árvore a ser manipulada.
    * \return a folha mais à esquerda.
    */
-  NoBinario<T>* minimo(NoBinario<T>* nodo) {
+  NoBinario<T> *minimo(NoBinario<T> *nodo) {
     if (nodo == nullptr) {
       return 0;
     }
-    NoBinario<T>* min = nodo;
+    NoBinario<T> *min = nodo;
     while (min->esquerda) {
       min = min->esquerda;
     }
@@ -180,7 +171,7 @@ class NoBinario {
    * \param nodo o ponteiro da árvore a ser percorrida.
    * \sa emOrdem(), posOrdem()
    */
-  void preOrdem(NoBinario<T>* nodo) {
+  void preOrdem(NoBinario<T> *nodo) {
     if (nodo) {
       elementos.push_back(*nodo);
       preOrdem(nodo->esquerda);
@@ -194,7 +185,7 @@ class NoBinario {
    * \param nodo o ponteiro da árvore a ser percorrida.
    * \sa preOrdem(), posOrdem()
    */
-  void emOrdem(NoBinario<T>* nodo) {
+  void emOrdem(NoBinario<T> *nodo) {
     if (nodo) {
       emOrdem(nodo->esquerda);
       elementos.push_back(*nodo);
@@ -207,7 +198,7 @@ class NoBinario {
    * \param nodo o ponteiro da árvore a ser percorrida.
    * \sa preOrdem(), emOrdem()
    */
-  void posOrdem(NoBinario<T>* nodo) {
+  void posOrdem(NoBinario<T> *nodo) {
     if (nodo) {
       posOrdem(nodo->esquerda);
       posOrdem(nodo->direita);

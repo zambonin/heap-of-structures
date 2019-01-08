@@ -11,7 +11,7 @@
 #include <cstdlib>
 
 class Carro {
- private:
+private:
   //! Identificador de tamanho.
   /*! Descreve o tamanho aleatório do carro. */
   int tamanho;
@@ -20,7 +20,7 @@ class Carro {
   /*! Descreve o número a designar o caminho a ser tomado pelo carro. */
   int probabilidade;
 
- public:
+public:
   //! Construtor.
   /*! Define o tamanho e a probabilidade de caminho do carro. */
   Carro();

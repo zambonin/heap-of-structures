@@ -10,18 +10,15 @@
 #define FILA_HPP_
 #include "EstruturaLinear.hpp"
 
-template <typename T>
-class Fila : public EstruturaLinear<T> {
- public:
+template <typename T> class Fila : public EstruturaLinear<T> {
+public:
   //! Método para adicionar dados à fila.
   /*!
    * \param dado um objeto genérico que representa o dado a ser adicionado no
    * vetor.
    * \sa retira(), limparFila()
    */
-  void inclui(T dado) {
-    this->adicionaDado(dado);
-  }
+  void inclui(T dado) { this->adicionaDado(dado); }
 
   //! Método para retirar dados da fila.
   /*!
@@ -45,52 +42,40 @@ class Fila : public EstruturaLinear<T> {
    * \return um objeto genérico.
    * \sa getUltimo()
    */
-  T ultimo() {
-    return this->getPosFinal();
-  }
+  T ultimo() { return this->getPosFinal(); }
 
   //! Método que identifica a posição do último elemento da fila.
   /*!
    * \return um inteiro.
    * \sa ultimo()
    */
-  int getUltimo() {
-    return this->final();
-  }
+  int getUltimo() { return this->final(); }
 
   //! Método que limpa a fila de quaisquer elementos.
   /*!
    * \sa inclui(), retira()
    */
-  void limparFila() {
-    this->limparEstruturaLinear();
-  }
+  void limparFila() { this->limparEstruturaLinear(); }
 
   //! Método que mostra se a fila está vazia.
   /*!
    * \return um boolean.
    * \sa filaCheia()
    */
-  bool filaVazia() {
-    return this->estruturaLinearVazia();
-  }
+  bool filaVazia() { return this->estruturaLinearVazia(); }
 
   //! Método que mostra se a fila está cheia.
   /*!
    * \return um boolean.
    * \sa filaVazia()
    */
-  bool filaCheia() {
-    return this->estruturaLinearCheia();
-  }
+  bool filaCheia() { return this->estruturaLinearCheia(); }
 
   //! Método que inicializa a fila sem elementos.
   /*!
    * \sa limparFila()
    */
-  void inicializaFila() {
-    this->fim = -1;
-  }
+  void inicializaFila() { this->fim = -1; }
 };
 
 #endif

@@ -13,12 +13,11 @@
 #include "ExcecaoListaVazia.h"
 #include "ExcecaoPosicao.h"
 
-template <typename T>
-class Lista {
- public:
+template <typename T> class Lista {
+public:
   //! Vetor básico.
   /*! Vetor usado para armazenar os dados da lista. */
-  T* lista;
+  T *lista;
 
   //! Identificador de posição.
   /*! Posição do último elemento da lista. */
@@ -28,13 +27,12 @@ class Lista {
   /*! Tamanho da lista. */
   int tamanho;
 
- public:
+public:
   //! Construtor com parâmetros.
   /*! Construtor que permite a variabilidade de tamanho da lista.
    * \param t o número máximo de elementos no vetor.
    */
-  explicit Lista(int tam)
-    : lista(new T[tam]), ultimo(-1), tamanho(tam) {}
+  explicit Lista(int tam) : lista(new T[tam]), ultimo(-1), tamanho(tam) {}
 
   //! Método para adicionar dados à lista.
   /*!
@@ -42,9 +40,7 @@ class Lista {
    * \sa adicionaNoInicio(), adicionaNaPosicao(), adicionaEmOrdem(),
    * retira(), retiraDoInicio(), retiraDaPosicao(), retiraEspecifico()
    */
-  void adiciona(T dado) {
-    return adicionaNaPosicao(dado, ultimo + 1);
-  }
+  void adiciona(T dado) { return adicionaNaPosicao(dado, ultimo + 1); }
 
   //! Método para adicionar um dado diretamente no início da lista.
   /*!
@@ -52,9 +48,7 @@ class Lista {
    * \sa adiciona(), adicionaNaPosicao(), adicionaEmOrdem(), retira(),
    * retiraDoInicio(), retiraDaPosicao(), retiraEspecifico()
    */
-  void adicionaNoInicio(T dado) {
-    return adicionaNaPosicao(dado, 0);
-  }
+  void adicionaNoInicio(T dado) { return adicionaNaPosicao(dado, 0); }
 
   //! Método para adicionar um dado em uma posição específica.
   /*!
@@ -102,9 +96,7 @@ class Lista {
    * adicionaEmOrdem(), retiraDoInicio(), retiraDaPosicao(),
    * retiraEspecifico()
    */
-  T retira() {
-    return retiraDaPosicao(ultimo);
-  }
+  T retira() { return retiraDaPosicao(ultimo); }
 
   //! Método para retirar o primeiro dado da lista.
   /*!
@@ -112,9 +104,7 @@ class Lista {
    * \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(),
    * adicionaEmOrdem(), retira(), retiraDaPosicao(), retiraEspecifico()
    */
-  T retiraDoInicio() {
-    return retiraDaPosicao(0);
-  }
+  T retiraDoInicio() { return retiraDaPosicao(0); }
 
   //! Método para retirar um dado em uma posição específica.
   /*!
@@ -213,9 +203,7 @@ class Lista {
    * \param dado2 o segundo dado a ser comparado.
    * \sa maior(), menor()
    */
-  bool igual(T dado1, T dado2) {
-    return dado1 == dado2;
-  }
+  bool igual(T dado1, T dado2) { return dado1 == dado2; }
 
   //! Método de comparação de maioridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
@@ -224,9 +212,7 @@ class Lista {
    * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), menor()
    */
-  bool maior(T dado1, T dado2) {
-    return dado2 < dado1;
-  }
+  bool maior(T dado1, T dado2) { return dado2 < dado1; }
 
   //! Método de comparação de minoridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
@@ -235,35 +221,27 @@ class Lista {
    * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), maior()
    */
-  bool menor(T dado1, T dado2) {
-    return dado1 < dado2;
-  }
+  bool menor(T dado1, T dado2) { return dado1 < dado2; }
 
   //! Método que mostra se a lista está cheia.
   /*!
    * \return um boolean.
    * \sa listaVazia()
    */
-  bool listaCheia() {
-    return ultimo == tamanho - 1;
-  }
+  bool listaCheia() { return ultimo == tamanho - 1; }
 
   //! Método que mostra se a lista está vazia.
   /*!
    * \return um boolean.
    * \sa listaCheia()
    */
-  bool listaVazia() {
-    return ultimo == -1;
-  }
+  bool listaVazia() { return ultimo == -1; }
 
   //! Método que destrói a lista.
   /*!
    * \sa inicializaLista()
    */
-  void destroiLista() {
-    ultimo = -1;
-  }
+  void destroiLista() { ultimo = -1; }
 
   //! Método para checagem de posição inválida solicitada no vetor.
   /*!
@@ -271,17 +249,13 @@ class Lista {
    * \return um boolean.
    * \sa posicao()
    */
-  bool posicaoInvalida(int p) {
-    return !(p <= ultimo + 1 && p >= 0);
-  }
+  bool posicaoInvalida(int p) { return !(p <= ultimo + 1 && p >= 0); }
 
   //! Método para retornar o tamanho da lista de vetor.
   /*!
    * \return um inteiro.
    */
-  int getTamanho() {
-    return tamanho;
-  }
+  int getTamanho() { return tamanho; }
 };
 
 #endif

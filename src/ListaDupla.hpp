@@ -14,28 +14,24 @@
 #include "ExcecaoListaVazia.h"
 #include "ExcecaoPosicao.h"
 
-template <typename T>
-class ListaDupla {
- protected:
+template <typename T> class ListaDupla {
+protected:
   //! Cabeça da lista encadeada dupla.
   /*! Elemento que descreve o primeiro nó da lista encadeada dupla. */
-  ElementoDuplo<T>* cabeca;
+  ElementoDuplo<T> *cabeca;
 
   //! Identificador de tamanho.
   /*! Tamanho da lista encadeada dupla. */
   int tamanho;
 
- public:
+public:
   //! Construtor.
   /*! Construtor básico para a classe, sem parâmetros. */
-  ListaDupla()
-    : cabeca(nullptr), tamanho(0) {}
+  ListaDupla() : cabeca(nullptr), tamanho(0) {}
 
   //! Destrutor.
   /*! Destrutor que deleta todos os nós. */
-  virtual ~ListaDupla() {
-    destroiListaDuplo();
-  }
+  virtual ~ListaDupla() { destroiListaDuplo(); }
 
   //! Método para adicionar um dado no fim da lista encadeada dupla.
   /*!
@@ -44,7 +40,7 @@ class ListaDupla {
    * eliminaDoInicioDuplo(), retiraDuplo(), retiraEspecificoDuplo(),
    * retiraDaPosicaoDuplo(), retiraDoInicioDuplo()
    */
-  virtual void adicionaDuplo(const T& dado) {
+  virtual void adicionaDuplo(const T &dado) {
     return this->adicionaNaPosicaoDuplo(dado, tamanho);
   }
 
@@ -56,11 +52,11 @@ class ListaDupla {
    * retiraDuplo(), retiraEspecificoDuplo(), retiraDaPosicaoDuplo(),
    * retiraDoInicioDuplo()
    */
-  void adicionaEmOrdem(const T& data) {
+  void adicionaEmOrdem(const T &data) {
     if (listaVazia()) {
       return adicionaNoInicioDuplo(data);
     }
-    ElementoDuplo<T>* atual = cabeca;
+    ElementoDuplo<T> *atual = cabeca;
     int posicao = 1;
     while (atual->getProximo() && maior(data, atual->getInfo())) {
       atual = atual->getProximo();
@@ -80,7 +76,7 @@ class ListaDupla {
    * retiraDuplo(), retiraDaPosicaoDuplo(), retiraDoInicioDuplo(),
    * retiraEspecificoDuplo()
    */
-  void adicionaNaPosicaoDuplo(const T& dado, int pos) {
+  void adicionaNaPosicaoDuplo(const T &dado, int pos) {
     if (posicaoInvalida(pos)) {
       throw ExcecaoPosicao();
     }
@@ -112,7 +108,7 @@ class ListaDupla {
    * retiraDuplo(), retiraDaPosicaoDuplo(), retiraDoInicioDuplo(),
    * retiraEspecificoDuplo()
    */
-  virtual void adicionaNoInicioDuplo(const T& dado) {
+  virtual void adicionaNoInicioDuplo(const T &dado) {
     auto novo = new ElementoDuplo<T>(dado, nullptr, nullptr);
     if (novo == nullptr) {
       throw ExcecaoListaCheia();
@@ -134,7 +130,7 @@ class ListaDupla {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    ElementoDuplo<T>* saiu = cabeca;
+    ElementoDuplo<T> *saiu = cabeca;
     cabeca = saiu->getProximo();
     cabeca->setAnterior(0);
     tamanho--;
@@ -148,9 +144,7 @@ class ListaDupla {
    * adicionaNoInicioDuplo(), retiraDaPosicaoDuplo(), retiraDoInicioDuplo(),
    * retiraEspecificoDuplo()
    */
-  T retiraDuplo() {
-    return this->retiraDaPosicaoDuplo(tamanho);
-  }
+  T retiraDuplo() { return this->retiraDaPosicaoDuplo(tamanho); }
 
   //! Método para retirar um dado em uma posição específica.
   /*!
@@ -167,11 +161,11 @@ class ListaDupla {
     if (pos == 0) {
       return retiraDoInicioDuplo();
     }
-    ElementoDuplo<T>* anterior = cabeca;
+    ElementoDuplo<T> *anterior = cabeca;
     for (int i = 0; i < pos - 2; i++) {
       anterior = anterior->getProximo();
     }
-    ElementoDuplo<T>* eliminar = anterior->getProximo();
+    ElementoDuplo<T> *eliminar = anterior->getProximo();
     T volta = eliminar->getInfo();
     anterior->setProximo(eliminar->getProximo());
     if (eliminar->getProximo()) {
@@ -190,7 +184,7 @@ class ListaDupla {
    * retiraEspecificoDuplo()
    */
   virtual T retiraDoInicioDuplo() {
-    ElementoDuplo<T>* saiu;
+    ElementoDuplo<T> *saiu;
     T volta;
     if (listaVazia()) {
       throw ExcecaoPosicao();
@@ -214,7 +208,7 @@ class ListaDupla {
    * adicionaEmOrdem(), retiraDuplo(), retiraDaPosicaoDuplo(),
    * retiraDoInicioDuplo()
    */
-  T retiraEspecificoDuplo(const T& dado) {
+  T retiraEspecificoDuplo(const T &dado) {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
@@ -228,11 +222,11 @@ class ListaDupla {
    * \return um boolean.
    * \sa posicaoDuplo(), posicaoMemDuplo()
    */
-  bool contemDuplo(const T& dado) {
+  bool contemDuplo(const T &dado) {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    ElementoDuplo<T>* atual = cabeca;
+    ElementoDuplo<T> *atual = cabeca;
     for (int i = 0; i < tamanho; i++) {
       if (igual(dado, atual->getInfo())) {
         return true;
@@ -249,11 +243,11 @@ class ListaDupla {
    * \return um boolean.
    * \sa contemDuplo(), posicaoMemDuplo()
    */
-  int posicaoDuplo(const T& dado) const {
+  int posicaoDuplo(const T &dado) const {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    ElementoDuplo<T>* atual = cabeca;
+    ElementoDuplo<T> *atual = cabeca;
     for (int i = 0; i < tamanho; i++) {
       if (dado == atual->getInfo()) {
         return i;
@@ -270,12 +264,12 @@ class ListaDupla {
    * \return um ponteiro relacionado ao dado específico.
    * \sa contemDuplo(), posicaoDuplo()
    */
-  T* posicaoMemDuplo(const T& dado) const {
+  T *posicaoMemDuplo(const T &dado) const {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
     int posicao = posicaoDuplo(dado);
-    ElementoDuplo<T>* atual = cabeca;
+    ElementoDuplo<T> *atual = cabeca;
     for (int i = 1; i < posicao; i++) {
       atual = atual->getProximo();
     }
@@ -293,7 +287,7 @@ class ListaDupla {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    ElementoDuplo<T>* mostra = cabeca;
+    ElementoDuplo<T> *mostra = cabeca;
     for (int i = 0; i < pos - 1; i++) {
       mostra = mostra->getProximo();
     }
@@ -304,16 +298,14 @@ class ListaDupla {
   /*!
    * \return a posição do último elemento na lista.
    */
-  int verUltimo() {
-    return tamanho;
-  }
+  int verUltimo() { return tamanho; }
 
   //! Método para eliminar iterativamente cada elemento da lista encadeada.
   /*!
    * \sa ~ListaDupla()
    */
   virtual void destroiListaDuplo() {
-    ElementoDuplo<T>* atual;
+    ElementoDuplo<T> *atual;
     for (int i = 0; i < tamanho; i++) {
       atual = cabeca;
       cabeca = cabeca->getProximo();
@@ -326,9 +318,7 @@ class ListaDupla {
   /*!
    * \return um boolean.
    */
-  bool listaVazia() const {
-    return tamanho == 0;
-  }
+  bool listaVazia() const { return tamanho == 0; }
 
   //! Método de comparação de igualdade entre dois dados.
   /*!
@@ -336,9 +326,7 @@ class ListaDupla {
    * \param dado2 o segundo dado a ser comparado.
    * \sa maior(), menor()
    */
-  bool igual(T dado1, T dado2) {
-    return dado1 == dado2;
-  }
+  bool igual(T dado1, T dado2) { return dado1 == dado2; }
 
   //! Método de comparação de maioridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
@@ -347,9 +335,7 @@ class ListaDupla {
    * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), menor()
    */
-  bool maior(T dado1, T dado2) {
-    return dado1 > dado2;
-  }
+  bool maior(T dado1, T dado2) { return dado1 > dado2; }
 
   //! Método de comparação de minoridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
@@ -358,9 +344,7 @@ class ListaDupla {
    * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), maior()
    */
-  bool menor(T dado1, T dado2) {
-    return dado1 < dado2;
-  }
+  bool menor(T dado1, T dado2) { return dado1 < dado2; }
 
   //! Método para checagem de posição inválida solicitada no vetor.
   /*!
@@ -368,9 +352,7 @@ class ListaDupla {
    * \return um boolean.
    * \sa posicaoDuplo(), posicaoMemDuplo()
    */
-  bool posicaoInvalida(int p) {
-    return p >= tamanho + 1 || p < 0;
-  }
+  bool posicaoInvalida(int p) { return p >= tamanho + 1 || p < 0; }
 };
 
 #endif

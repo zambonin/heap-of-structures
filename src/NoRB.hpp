@@ -10,34 +10,33 @@
 #define NORB_HPP_
 #include "NoBinario.hpp"
 
-template <typename T>
-class NoRB {
- private:
+template <typename T> class NoRB {
+private:
   //! Dado de um nó da árvore red-black.
   /*! Tipo genérico que armazena o conteúdo do nó da árvore red-black. */
   T dado;
 
   //! Raiz da árvore.
   /*! Nó que descreve a raiz da árvore red-black. */
-  NoRB<T>* raiz;
+  NoRB<T> *raiz;
 
   //! Filho à esquerda de um nó.
   /*! Nó que descreve o filho à esquerda em relação ao nó atual. */
-  NoRB<T>* esq;
+  NoRB<T> *esq;
 
   //! Filho à direita de um nó.
   /*! Nó que descreve o filho à direita em relação ao nó atual. */
-  NoRB<T>* dir;
+  NoRB<T> *dir;
 
   //! Denota a cor do nodo.
   /*! Boolean para representar a cor do nodo (true para rubro). */
   bool cor;
 
- public:
+public:
   //! Construtor.
   /*! Construtor que cria um nó preto com conteúdo novo e dois filhos nulos. */
   explicit NoRB(T dado)
-    : dado(dado), raiz(nullptr), esq(nullptr), dir(nullptr), cor(false) {}
+      : dado(dado), raiz(nullptr), esq(nullptr), dir(nullptr), cor(false) {}
 
   //! Método que rotaciona uma série de nodos à direita.
   /*!
@@ -45,10 +44,10 @@ class NoRB {
    * \return nodo que representa a nova raiz.
    * \sa roda_esq()
    */
-  NoRB<T>* roda_dir(NoRB<T>* nodo) {
-    NoRB<T>* pai = nodo->pai;
+  NoRB<T> *roda_dir(NoRB<T> *nodo) {
+    NoRB<T> *pai = nodo->pai;
     bool lado = pai->esq != nodo;
-    NoRB<T>* aux = nodo->esq;
+    NoRB<T> *aux = nodo->esq;
     aux->pai = pai;
     nodo->esq = aux->dir;
     nodo->esq->pai = nodo;
@@ -64,10 +63,10 @@ class NoRB {
    * \return nodo que representa a nova raiz.
    * \sa roda_dir()
    */
-  NoRB<T>* roda_esq(NoRB<T>* nodo) {
-    NoRB<T>* pai = nodo->pai;
+  NoRB<T> *roda_esq(NoRB<T> *nodo) {
+    NoRB<T> *pai = nodo->pai;
     bool lado = pai->esq != nodo;
-    NoRB<T>* aux = nodo->dir;
+    NoRB<T> *aux = nodo->dir;
     aux->pai = pai;
     nodo->dir = aux->esq;
     nodo->dir->pai = nodo;
@@ -84,10 +83,10 @@ class NoRB {
    * \param nodo o nodo a ser inserido.
    * \sa passo_CE_esq(), passo_CE_dir()
    */
-  void insere_RB(NoRB<T>* raiz, const T& dado, NoRB<T>* nodo) {
+  void insere_RB(NoRB<T> *raiz, const T &dado, NoRB<T> *nodo) {
     NoBinario<T>::inserir(dado, nodo);
     nodo->cor = true;
-    NoRB<T>* atual = nodo;
+    NoRB<T> *atual = nodo;
     NoRB<T> *pai, avo;
     while (atual != raiz && atual->pai->cor) {
       pai = atual->pai;
@@ -108,8 +107,8 @@ class NoRB {
    * \param avo nodo pai do pai, ou seja, dois níveis acima do atual.
    * \sa insere_RB(), passo_CE_dir()
    */
-  void passo_CE_esq(NoRB<T>* atual, NoRB<T>* pai, NoRB<T>* avo) {
-    NoRB<T>* tio = avo->dir;
+  void passo_CE_esq(NoRB<T> *atual, NoRB<T> *pai, NoRB<T> *avo) {
+    NoRB<T> *tio = avo->dir;
     if (tio->cor) {
       pai->cor = false;
       avo->cor = true;
@@ -133,8 +132,8 @@ class NoRB {
    * \param avo nodo pai do pai, ou seja, dois níveis acima do atual.
    * \sa insere_RB(), passo_CE_esq()
    */
-  void passo_CE_dir(NoRB<T>* atual, NoRB<T>* pai, NoRB<T>* avo) {
-    NoRB<T>* tio = avo->dir;
+  void passo_CE_dir(NoRB<T> *atual, NoRB<T> *pai, NoRB<T> *avo) {
+    NoRB<T> *tio = avo->dir;
     if (tio->cor) {
       pai->cor = false;
       avo->cor = true;
@@ -158,7 +157,7 @@ class NoRB {
    * \return o nodo corrigido.
    * \sa passo_CED_esq(), passo_CED_dir()
    */
-  NoRB<T>* passo_CED(NoRB<T>* nodo, NoRB<T>* raiz) {
+  NoRB<T> *passo_CED(NoRB<T> *nodo, NoRB<T> *raiz) {
     while (nodo != raiz) {
       if (nodo == nodo->pai->esq) {
         nodo = passo_CED_esq(nodo, raiz);
@@ -176,8 +175,8 @@ class NoRB {
    * \return o nodo corrigido.
    * \sa passo_CED(), passo_CED_dir()
    */
-  NoRB<T>* passo_CED_esq(NoRB<T>* nodo, NoRB<T>* raiz) {
-    NoRB<T>* aux = nodo->pai->dir;
+  NoRB<T> *passo_CED_esq(NoRB<T> *nodo, NoRB<T> *raiz) {
+    NoRB<T> *aux = nodo->pai->dir;
     if (aux->cor) {
       aux->cor = false;
       nodo->pai->cor = true;
@@ -209,8 +208,8 @@ class NoRB {
    * \return o nodo corrigido.
    * \sa passo_CED(), passo_CED_esq()
    */
-  NoRB<T>* passo_CED_dir(NoRB<T>* nodo, NoRB<T>* raiz) {
-    NoRB<T>* aux = nodo->pai->esq;
+  NoRB<T> *passo_CED_dir(NoRB<T> *nodo, NoRB<T> *raiz) {
+    NoRB<T> *aux = nodo->pai->esq;
     if (aux->cor) {
       aux->cor = false;
       nodo->pai->cor = true;
@@ -234,7 +233,6 @@ class NoRB {
     }
     return raiz;
   }
-
 };
 
 #endif

@@ -24,7 +24,7 @@ Pista::Pista(int _tamanho, int _velocidadeMedia, int _intervaloCriacao,
   }
 }
 
-void Pista::adicionaCarro(Carro* carro) {
+void Pista::adicionaCarro(Carro *carro) {
   int _espacoOcupado = espacoOcupado + carro->getTamanho();
   if (_espacoOcupado <= tamanho) {
     this->inclui(carro);
@@ -46,22 +46,14 @@ int Pista::tempoDeChegada(int tempoNasceu) {
   return tempoNasceu + tempoChegada;
 }
 
-int Pista::retornaCarrosQuePassaram() {
-  return carrosQuePassaram;
-}
+int Pista::retornaCarrosQuePassaram() { return carrosQuePassaram; }
 
-int Pista::retornaCarrosQueEntraram() {
-  return carrosQueEntraram;
-}
+int Pista::retornaCarrosQueEntraram() { return carrosQueEntraram; }
 
-bool Pista::estaCheia(Carro* carro) {
+bool Pista::estaCheia(Carro *carro) {
   return espacoOcupado + carro->getTamanho() > tamanho;
 }
 
-bool Pista::eFonte() {
-  return fonte;
-}
+bool Pista::eFonte() { return fonte; }
 
-bool Pista::eSumidouro() {
-  return sumidouro;
-}
+bool Pista::eSumidouro() { return sumidouro; }

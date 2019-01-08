@@ -1,8 +1,8 @@
 #include <Semaforo.h>
 
-Semaforo::Semaforo(bool _aberto, Pista* arranjo[], int* _probabilidades,
+Semaforo::Semaforo(bool _aberto, Pista *arranjo[], int *_probabilidades,
                    int _tempoIntervalo) {
-  pistas = new Lista<Pista*>(3);
+  pistas = new Lista<Pista *>(3);
   probabilidades = _probabilidades;
   tempoIntervalo = _tempoIntervalo;
   tempoQueVaiAbrir = 0;
@@ -13,10 +13,10 @@ Semaforo::Semaforo(bool _aberto, Pista* arranjo[], int* _probabilidades,
   }
 }
 
-Pista* Semaforo::passaCarro() {
-  Carro* carro = pistaLocal->primeiro();
+Pista *Semaforo::passaCarro() {
+  Carro *carro = pistaLocal->primeiro();
   int pistaEscolhida = calculaProbabilidade(carro);
-  Pista* proxima = pistas->retornaDado(pistaEscolhida);
+  Pista *proxima = pistas->retornaDado(pistaEscolhida);
   if (!aberto) {
     throw ExcecaoSinalVermelho();
   }
@@ -40,8 +40,8 @@ int Semaforo::calculeProximoEvento(int tempoAtual) {
   return (tempoAtual + tempoIntervalo);
 }
 
-int Semaforo::calculaProbabilidade(Carro* carro) {
-  int* prob = probabilidades;
+int Semaforo::calculaProbabilidade(Carro *carro) {
+  int *prob = probabilidades;
   int numPistas = pistas->getTamanho();
   int probabilidadeDoCarro = carro->getProbabilidade();
   int valorComp[numPistas];
@@ -57,14 +57,8 @@ int Semaforo::calculaProbabilidade(Carro* carro) {
   return -1;
 }
 
-int Semaforo::retornaIntervalo() {
-  return tempoIntervalo;
-}
+int Semaforo::retornaIntervalo() { return tempoIntervalo; }
 
-Pista* Semaforo::retornaPistaLocal() {
-  return pistaLocal;
-}
+Pista *Semaforo::retornaPistaLocal() { return pistaLocal; }
 
-int Semaforo::retornarTempoQueVaiAbrir() {
-  return tempoQueVaiAbrir;
-}
+int Semaforo::retornarTempoQueVaiAbrir() { return tempoQueVaiAbrir; }

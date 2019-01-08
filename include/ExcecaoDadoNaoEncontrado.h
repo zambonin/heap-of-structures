@@ -12,12 +12,12 @@
 #include <exception>
 
 class ExcecaoDadoNaoEncontrado : public std::exception {
- public:
+public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!
    * \return um char*.
    */
-  virtual const char* what() const throw() {
+  virtual const char *what() const throw() {
     return ("Sua lista não contém esse dado!");
   }
 };

@@ -11,7 +11,7 @@
 #include "ListaEnc.hpp"
 
 class Evento {
- private:
+private:
   //! Identificador de tempo.
   /*! Descreve o tempo discreto do evento. */
   int tempo;
@@ -25,20 +25,20 @@ class Evento {
 
   //! Identificador de objeto.
   /*! Descreve o objeto característico do evento atual. */
-  void* objeto;
+  void *objeto;
 
   //! Identificador de objeto relacionado.
   /*! Descreve o objeto relacionado à característica principal
    * do evento, apresentando mais informações sobre tal.
    */
-  void* relacionado;
+  void *relacionado;
 
- public:
+public:
   //! Construtor.
   /*! Construtor do objeto que leva todos os atributos descritos
    * acima para frisar a variabilidade do evento.
    */
-  Evento(int _tempo, void* _objeto, void* _relacionado, int _tipo);
+  Evento(int _tempo, void *_objeto, void *_relacionado, int _tipo);
 
   //! Método que retorna o tipo do evento.
   /*!
@@ -56,22 +56,22 @@ class Evento {
   /*
    * \return um ponteiro void (qualquer tipo de objeto).
    */
-  void* getObjeto();
+  void *getObjeto();
 
   //! Método que retorna o objeto relacionado ao evento principal.
   /*
    * \return um ponteiro void (qualquer tipo de objeto).
    */
-  void* getRelacionado();
+  void *getRelacionado();
 };
 
-class ListaDeEventos : public ListaEnc<Evento*> {
- public:
+class ListaDeEventos : public ListaEnc<Evento *> {
+public:
   //! Método de comparação de eventos.
   /*! Sobrescreve o método principal e ordena os eventos
    * de acordo com seu tempo corretamente.
    */
-  bool maior(Evento* dado1, Evento* dado2) const;
+  bool maior(Evento *dado1, Evento *dado2) const;
 };
 
 #endif

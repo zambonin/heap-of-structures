@@ -8,11 +8,11 @@
 
 #ifndef PISTA_H_
 #define PISTA_H_
-#include "FilaEnc.hpp"
 #include "Carro.h"
+#include "FilaEnc.hpp"
 
-class Pista : public FilaEnc<Carro*> {
- private:
+class Pista : public FilaEnc<Carro *> {
+private:
   //! Identificador de tamanho.
   /*! Descreve o tamanho da fila encadeada de carros. */
   int tamanho;
@@ -53,7 +53,7 @@ class Pista : public FilaEnc<Carro*> {
   /*! Descreve a habilidade de deleção de carros da pista. */
   bool sumidouro;
 
- public:
+public:
   //! Construtor.
   /*! Define as características intrínsecas da pista, fornecidas previamente. */
   Pista(int _tamanho, int _velocidadeMedia, int _intervaloCriacao,
@@ -64,7 +64,7 @@ class Pista : public FilaEnc<Carro*> {
    * \param carro o ponteiro do carro a ser adicionado.
    * \sa removeCarro()
    */
-  void adicionaCarro(Carro* carro);
+  void adicionaCarro(Carro *carro);
 
   //! Método que remove um carro da fila encadeada.
   /*!
@@ -109,7 +109,7 @@ class Pista : public FilaEnc<Carro*> {
    * \param carro o objeto a ser adicionado ao tamanho atual da pista.
    * \return um boolean.
    */
-  bool estaCheia(Carro* carro);
+  bool estaCheia(Carro *carro);
 
   //! Método que retorna se a pista cria carros.
   /*!

@@ -8,24 +8,24 @@
 
 #ifndef SISTEMA_H_
 #define SISTEMA_H_
-#include <iostream>
-#include "ListaCirc.hpp"
 #include "Evento.h"
+#include "ListaCirc.hpp"
 #include "Semaforo.h"
+#include <iostream>
 
 class Sistema {
- public:
+public:
   //! Lista circular de semáforos.
   /*! Descreve a lista de semáforos gerenciada pelo sistema. */
-  ListaCirc<Semaforo*>* semaforos;
+  ListaCirc<Semaforo *> *semaforos{};
 
   //! Lista circular de pistas.
   /*! Descreve a lista de pistas geral gerenciada pelo sistema. */
-  ListaCirc<Pista*>* pistas;
+  ListaCirc<Pista *> *pistas{};
 
   //! Lista encadeada de eventos.
   /*! Descreve a lista de eventos gerenciada pelo sistema. */
-  ListaDeEventos* listaEventos;
+  ListaDeEventos *listaEventos;
 
   //! Identificador de tempo atual.
   /*! Descreve o tempo do evento atual no sistema. */
@@ -43,13 +43,13 @@ class Sistema {
   /*! Descreve o número de carros que passaram por qualquer
    * semáforo do sistema.
    */
-  int carrosQuePassaram;
+  int carrosQuePassaram{};
 
   //! Contador de carros que entraram no sistema.
   /*! Descreve o número de carros total que foram criados
    * por qualquer pista.
    */
-  int carrosQueEntraram;
+  int carrosQueEntraram{};
 
   //! Construtor.
   /*! Construtor do sistema que leva o tempo de abertura do semáforo e o tempo
@@ -96,14 +96,14 @@ class Sistema {
   /*!
    * \param eventoAtual o evento que é usado para determinar o próximo evento.
    */
-  void executarCarroChegouNoSemaforo(Evento* eventoAtual);
+  void executarCarroChegouNoSemaforo(Evento *eventoAtual);
 
   //! Determina o semáforo a ser utilizado por uma pista no programa.
   /*!
    * \param pista o ponteiro da pista a ser utilizada.
    * \return o ponteiro do semáforo a ser utilizado.
    */
-  Semaforo* procurarPorSemaforo(Pista* pista);
+  Semaforo *procurarPorSemaforo(Pista *pista);
 
   //! Executa todos os eventos criados ao longo do programa.
   /*!

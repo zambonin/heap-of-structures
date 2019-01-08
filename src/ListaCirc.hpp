@@ -10,9 +10,8 @@
 #define LISTACIRC_HPP_
 #include "ListaEnc.hpp"
 
-template <typename T>
-class ListaCirc : public ListaEnc<T> {
- public:
+template <typename T> class ListaCirc : public ListaEnc<T> {
+public:
   //! Construtor.
   /*! Construtor básico para a classe, sem parâmetros. */
   ListaCirc() : ListaEnc<T>() {
@@ -28,7 +27,7 @@ class ListaCirc : public ListaEnc<T> {
    * eliminaDoInicio(), retira(), retiraEspecifico(), retiraDaPosicao(),
    * retiraDoInicio()
    */
-  void adiciona(const T& dado) {
+  void adiciona(const T &dado) {
     return adicionaNaPosicao(dado, this->tamanho);
   }
 
@@ -40,7 +39,7 @@ class ListaCirc : public ListaEnc<T> {
    * eliminaDoInicio(), retira(), retiraEspecifico(), retiraDaPosicao(),
    * retiraDoInicio()
    */
-  void adicionaEmOrdem(const T& dado) {
+  void adicionaEmOrdem(const T &dado) {
     if (ListaEnc<T>::listaVazia()) {
       return adicionaNoInicio(dado);
     }
@@ -63,7 +62,7 @@ class ListaCirc : public ListaEnc<T> {
    * \sa adiciona(), adicionaEmOrdem(), adicionaNoInicio(), retira(),
    * retiraDaPosicao(), retiraDoInicio(), retiraEspecifico()
    */
-  void adicionaNaPosicao(const T& dado, int pos) {
+  void adicionaNaPosicao(const T &dado, int pos) {
     if (ListaEnc<T>::posicaoInvalida(pos)) {
       throw ExcecaoPosicao();
     }
@@ -90,7 +89,7 @@ class ListaCirc : public ListaEnc<T> {
    * \sa adiciona(), adicionaEmOrdem(), adicionaNaPosicao(), retira(),
    * retiraDaPosicao(), retiraDoInicio(), retiraEspecifico()
    */
-  void adicionaNoInicio(const T& dado) {
+  void adicionaNoInicio(const T &dado) {
     auto novo = new Elemento<T>(dado, nullptr);
     if (novo == nullptr) {
       throw ExcecaoListaCheia();
@@ -121,9 +120,7 @@ class ListaCirc : public ListaEnc<T> {
    * \sa adiciona(), adicionaEmOrdem(), adicionaNaPosicao(), adicionaNoInicio()
    * retiraDaPosicao(), retiraDoInicio(), retiraEspecifico()
    */
-  T retira() {
-    return retiraDaPosicao(this->tamanho);
-  }
+  T retira() { return retiraDaPosicao(this->tamanho); }
 
   //! Método para retirar um dado em uma posição específica.
   /*!
@@ -176,7 +173,7 @@ class ListaCirc : public ListaEnc<T> {
    * \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(),
    * adicionaEmOrdem(), retira(), retiraDaPosicao(), retiraDoInicio()
    */
-  T retiraEspecifico(const T& dado) {
+  T retiraEspecifico(const T &dado) {
     if (ListaEnc<T>::listaVazia()) {
       throw ExcecaoListaVazia();
     }
@@ -190,7 +187,7 @@ class ListaCirc : public ListaEnc<T> {
    * \return um boolean.
    * \sa posicao(), posicaoMem()
    */
-  bool contem(const T& dado) {
+  bool contem(const T &dado) {
     if (ListaEnc<T>::listaVazia()) {
       throw ExcecaoListaVazia();
     }
@@ -211,7 +208,7 @@ class ListaCirc : public ListaEnc<T> {
    * \return um boolean.
    * \sa contem(), posicaoMem()
    */
-  int posicao(const T& dado) const {
+  int posicao(const T &dado) const {
     if (ListaEnc<T>::listaVazia()) {
       throw ExcecaoListaVazia();
     }
@@ -232,7 +229,7 @@ class ListaCirc : public ListaEnc<T> {
    * \return um ponteiro relacionado ao dado específico.
    * \sa contem(), posicao()
    */
-  T* posicaoMem(const T& dado) const {
+  T *posicaoMem(const T &dado) const {
     if (ListaEnc<T>::listaVazia()) {
       throw ExcecaoListaVazia();
     }
@@ -242,7 +239,7 @@ class ListaCirc : public ListaEnc<T> {
       atual = atual->getProximo();
     }
     T volta = atual->getInfo();
-    T* retorno = &volta;
+    T *retorno = &volta;
     return retorno;
   }
 
@@ -268,9 +265,7 @@ class ListaCirc : public ListaEnc<T> {
   /*!
    * \return a posição do último elemento na lista.
    */
-  int verUltimo() {
-    return this->tamanho;
-  }
+  int verUltimo() { return this->tamanho; }
 };
 
 #endif

@@ -12,12 +12,11 @@
 #include "ExcecaoEstruturaCheia.h"
 #include "ExcecaoEstruturaVazia.h"
 
-template <typename T>
-class EstruturaLinear {
- protected:
+template <typename T> class EstruturaLinear {
+protected:
   //! Vetor básico.
   /*! Vetor usado para armazenar os dados da estrutura linear. */
-  T* estrutura;
+  T *estrutura;
 
   //! Identificador de posição.
   /*! Posição do último elemento da estrutura linear. */
@@ -27,13 +26,12 @@ class EstruturaLinear {
   /*! Tamanho da estrutura linear. */
   int tamanho;
 
- public:
+public:
   //! Construtor com parâmetros.
   /*! Construtor que permite a variabilidade de tamanho da estrutura linear.
    * \param t o número máximo de elementos no vetor.
    */
-  explicit EstruturaLinear(int t)
-    : estrutura(new T[t]), fim(-1), tamanho(t) {}
+  explicit EstruturaLinear(int t) : estrutura(new T[t]), fim(-1), tamanho(t) {}
 
   //! Método para adicionar dados à estrutura.
   /*!
@@ -102,18 +100,14 @@ class EstruturaLinear {
    * \return um boolean.
    * \sa estruturaLinearCheia()
    */
-  bool estruturaLinearVazia() {
-    return fim == -1;
-  }
+  bool estruturaLinearVazia() { return fim == -1; }
 
   //! Método que mostra se a estrutura linear está cheia.
   /*!
    * \return um boolean.
    * \sa estruturaLinearVazia()
    */
-  bool estruturaLinearCheia() {
-    return fim == tamanho - 1;
-  }
+  bool estruturaLinearCheia() { return fim == tamanho - 1; }
 };
 
 #endif

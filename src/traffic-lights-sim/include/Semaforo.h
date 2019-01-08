@@ -8,19 +8,19 @@
 
 #ifndef SEMAFORO_H_
 #define SEMAFORO_H_
-#include "Lista.hpp"
 #include "ExcecaoSinalVermelho.h"
+#include "Lista.hpp"
 #include "Pista.h"
 
 class Semaforo {
- private:
+private:
   //! Lista de vetor de pistas.
   /*! Descreve a lista que contém as pistas em um determinado semáforo. */
-  Lista<Pista*>* pistas;
+  Lista<Pista *> *pistas{};
 
   //! Identificador de pista local.
   /*! Apresenta para qual pista o semáforo está aberto no evento. */
-  Pista* pistaLocal;
+  Pista *pistaLocal;
 
   //! Identificador de intervalo de abertura de semáforo.
   /*! Descreve o período em que o semáforo ficará aberto. */
@@ -30,7 +30,7 @@ class Semaforo {
   /*! Descreve numericamente as probabilidades de troca de pista em um dado
    * semáforo.
    */
-  int* probabilidades;
+  int *probabilidades;
 
   //! Identifica o próximo evento que o semáforo abrirá.
   /*! Descreve numericamente o tempo do próximo evento em que o semáforo vai
@@ -42,19 +42,19 @@ class Semaforo {
   /*! Descreve se o semáforo está aberto ou fechado. */
   bool aberto;
 
- public:
+public:
   //! Construtor.
   /*! Construtor do objeto que leva todos os atributos descritos
    * acima para frisar a variabilidade do semáforo.
    */
-  Semaforo(bool _aberto, Pista* arranjo[], int* _probabilidades,
+  Semaforo(bool _aberto, Pista *arranjo[], int *_probabilidades,
            int _tempoIntervalo);
 
   //! Método que troca o carro de pista.
   /*!
    * \return a pista para qual o carro foi trocado.
    */
-  Pista* passaCarro();
+  Pista *passaCarro();
 
   //! Método que troca o estado de semáforo.
   /*!
@@ -74,7 +74,7 @@ class Semaforo {
    * \param carro o carro que possui as probabilidades.
    * \return um inteiro.
    */
-  int calculaProbabilidade(Carro* carro);
+  int calculaProbabilidade(Carro *carro);
 
   //! Método que retorna o intervalo de abertura do semáforo.
   /*!
@@ -88,7 +88,7 @@ class Semaforo {
    * \return a pista que está aberta.
    * \sa retornaIntervalo(), retornaTempoQueVaiAbrir()
    */
-  Pista* retornaPistaLocal();
+  Pista *retornaPistaLocal();
 
   //! Método que retorna o tempo do próximo evento de abertura.
   /*!

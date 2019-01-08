@@ -12,25 +12,23 @@
 #include "ExcecaoListaVazia.h"
 #include "ListaEnc.hpp"
 
-template <typename T>
-class FilaEnc : public ListaEnc<T> {
- private:
+template <typename T> class FilaEnc : public ListaEnc<T> {
+private:
   //! Fim da fila encadeada.
   /*! Ponteiro que aponta para o último elemento da fila encadeada. */
-  Elemento<T>* fim;
+  Elemento<T> *fim;
 
- public:
+public:
   //! Construtor.
   /*! Construtor para a classe, sem parâmetros. Herdado da classe-pai. */
-  FilaEnc()
-    : ListaEnc<T>(), fim(nullptr) {}
+  FilaEnc() : ListaEnc<T>(), fim(nullptr) {}
 
   //! Método para adicionar um dado à fila encadeada.
   /*!
    * \param dado o endereço do objeto genérico a ser adicionado.
    * \sa retira()
    */
-  void inclui(const T& dado) {
+  void inclui(const T &dado) {
     auto novo = new Elemento<T>(dado, nullptr);
     if (novo == nullptr) {
       throw ExcecaoListaCheia();
@@ -54,7 +52,7 @@ class FilaEnc : public ListaEnc<T> {
     if (filaVazia()) {
       throw ExcecaoListaVazia();
     }
-    Elemento<T>* sai = this->cabeca;
+    Elemento<T> *sai = this->cabeca;
     T volta = sai->getInfo();
     this->cabeca = sai->getProximo();
     if (this->tamanho == 1) {
@@ -82,25 +80,19 @@ class FilaEnc : public ListaEnc<T> {
    * \return o primeiro objeto adicionado à fila encadeada.
    * \sa ultimo()
    */
-  T primeiro() {
-    return this->retornaDado(0);
-  }
+  T primeiro() { return this->retornaDado(0); }
 
   //! Método que mostra se a fila está vazia.
   /*!
    * \return um boolean.
    */
-  bool filaVazia() {
-    return this->listaVazia();
-  }
+  bool filaVazia() { return this->listaVazia(); }
 
   //! Método para eliminar iterativamente cada elemento da fila encadeada.
   /*!
    * \sa ~FilaEnc()
    */
-  void limparFila() {
-    this->destroiLista();
-  }
+  void limparFila() { this->destroiLista(); }
 };
 
 #endif

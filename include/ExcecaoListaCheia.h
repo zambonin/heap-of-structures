@@ -12,14 +12,12 @@
 #include <exception>
 
 class ExcecaoListaCheia : public std::exception {
- public:
+public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!
    * \return um char*.
    */
-  virtual const char* what() const throw() {
-    return ("Sua lista está cheia!");
-  }
+  virtual const char *what() const throw() { return ("Sua lista está cheia!"); }
 };
 
 #endif

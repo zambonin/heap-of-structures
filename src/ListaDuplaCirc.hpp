@@ -10,14 +10,13 @@
 #define LISTADUPLACIRC_HPP_
 #include "ListaDupla.hpp"
 
-template <typename T>
-class ListaDuplaCirc : public ListaDupla<T> {
- private:
+template <typename T> class ListaDuplaCirc : public ListaDupla<T> {
+private:
   //! Sentinela da lista encadeada circular dupla.
   /*! Elemento que descreve o primeiro nó da lista circular dupla. */
-  ElementoDuplo<T>* sentinela;
+  ElementoDuplo<T> *sentinela;
 
- public:
+public:
   //! Construtor.
   /*! Construtor básico para a classe, sem parâmetros. */
   ListaDuplaCirc() : ListaDupla<T>() {
@@ -30,16 +29,14 @@ class ListaDuplaCirc : public ListaDupla<T> {
 
   //! Destrutor.
   /*! Destrutor que deleta todos os nós. */
-  ~ListaDuplaCirc() {
-    this->destroiListaDuplo();
-  }
+  ~ListaDuplaCirc() { this->destroiListaDuplo(); }
 
   //! Método para adicionar um dado no fim da lista circular dupla.
   /*!
-  * \param dado o endereço do objeto genérico a ser adicionado.
-  * \sa adicionaNoInicioDuplo(), retiraDoInicioDuplo()
-  */
-  void adicionaDuplo(const T& dado) {
+   * \param dado o endereço do objeto genérico a ser adicionado.
+   * \sa adicionaNoInicioDuplo(), retiraDoInicioDuplo()
+   */
+  void adicionaDuplo(const T &dado) {
     if (ListaDupla<T>::listaVazia()) {
       return adicionaNoInicioDuplo(dado);
     }
@@ -57,10 +54,10 @@ class ListaDuplaCirc : public ListaDupla<T> {
 
   //! Método para adicionar um dado no início da lista encadeada dupla.
   /*!
-  * \param dado o endereço do objeto genérico a ser adicionado.
-  * \sa adicionaDuplo(), retiraDoInicioDuplo()
-  */
-  void adicionaNoInicioDuplo(const T& dado) {
+   * \param dado o endereço do objeto genérico a ser adicionado.
+   * \sa adicionaDuplo(), retiraDoInicioDuplo()
+   */
+  void adicionaNoInicioDuplo(const T &dado) {
     auto novo = new ElementoDuplo<T>(dado, nullptr, nullptr);
     if (novo == nullptr) {
       throw ExcecaoListaCheia();
@@ -75,10 +72,10 @@ class ListaDuplaCirc : public ListaDupla<T> {
 
   //! Método para eliminar iterativamente cada elemento da lista circular.
   /*!
-  * \sa ~eliminaDoInicioDuplo()
-  */
+   * \sa ~eliminaDoInicioDuplo()
+   */
   void destroiListaDuplo() {
-    ElementoDuplo<T>* atual;
+    ElementoDuplo<T> *atual;
     for (int i = 0; i < this->tamanho; i++) {
       atual = this->cabeca;
       this->cabeca = this->cabeca->getProximo();
@@ -89,8 +86,8 @@ class ListaDuplaCirc : public ListaDupla<T> {
 
   //! Método para eliminar o primeiro nó da lista circular dupla.
   /*!
-  * \sa ~destroiListaDuplo()
-  */
+   * \sa ~destroiListaDuplo()
+   */
   void eliminaDoInicioDuplo() {
     ListaDupla<T>::eliminaDoInicioDuplo();
     sentinela->setProximo(this->cabeca);
@@ -99,9 +96,9 @@ class ListaDuplaCirc : public ListaDupla<T> {
 
   //! Método para retirar o primeiro dado da lista.
   /*!
-  * \return um objeto genérico que era o primeiro da lista.
-  * \sa adicionaDuplo(), adicionaNoInicioDuplo()
-  */
+   * \return um objeto genérico que era o primeiro da lista.
+   * \sa adicionaDuplo(), adicionaNoInicioDuplo()
+   */
   T retiraDoInicioDuplo() {
     T volta = ListaDupla<T>::retiraDoInicioDuplo();
     sentinela->setProximo(this->cabeca);

@@ -14,28 +14,24 @@
 #include "ExcecaoListaVazia.h"
 #include "ExcecaoPosicao.h"
 
-template <typename T>
-class ListaEnc {
- protected:
+template <typename T> class ListaEnc {
+protected:
   //! Cabeça da lista encadeada.
   /*! Elemento que descreve o primeiro nó da lista encadeada. */
-  Elemento<T>* cabeca;
+  Elemento<T> *cabeca;
 
   //! Identificador de tamanho.
   /*! Tamanho da lista encadeada. */
   int tamanho;
 
- public:
+public:
   //! Construtor.
   /*! Construtor básico para a classe, sem parâmetros. */
-  ListaEnc()
-    : cabeca(nullptr), tamanho(0) {}
+  ListaEnc() : cabeca(nullptr), tamanho(0) {}
 
   //! Destrutor.
   /*! Destrutor que deleta todos os nós. */
-  ~ListaEnc() {
-    destroiLista();
-  }
+  ~ListaEnc() { destroiLista(); }
 
   //! Método para adicionar um dado diretamente no fim da lista encadeada.
   /*!
@@ -43,9 +39,7 @@ class ListaEnc {
    * \sa adicionaEmOrdem(), adicionaNaPosicao(), adicionaNoInicio(), retira(),
    * retiraEspecifico(), retiraDaPosicao(), retiraDoInicio()
    */
-  void adiciona(const T& dado) {
-    return adicionaNaPosicao(dado, tamanho);
-  }
+  void adiciona(const T &dado) { return adicionaNaPosicao(dado, tamanho); }
 
   //! Método para adicionar um dado em uma posição específica
   //! de acordo com a ordem inerente da classe.
@@ -54,11 +48,11 @@ class ListaEnc {
    * \sa adiciona(), adicionaNaPosicao(), adicionaNoInicio(), retira(),
    * retiraEspecifico(), retiraDaPosicao(), retiraDoInicio()
    */
-  void adicionaEmOrdem(const T& dado) {
+  void adicionaEmOrdem(const T &dado) {
     if (listaVazia()) {
       return adicionaNoInicio(dado);
     }
-    Elemento<T>* atual = cabeca;
+    Elemento<T> *atual = cabeca;
     int posicao = 0;
     while (atual->getProximo() && maior(dado, atual->getInfo())) {
       atual = atual->getProximo();
@@ -77,7 +71,7 @@ class ListaEnc {
    * \sa adiciona(), adicionaEmOrdem(), adicionaNoInicio(), retira(),
    * retiraDaPosicao(), retiraDoInicio(), retiraEspecifico()
    */
-  void adicionaNaPosicao(const T& dado, int posicao) {
+  void adicionaNaPosicao(const T &dado, int posicao) {
     if (posicaoInvalida(posicao)) {
       throw ExcecaoPosicao();
     }
@@ -88,7 +82,7 @@ class ListaEnc {
     if (novo == nullptr) {
       throw ExcecaoListaCheia();
     }
-    Elemento<T>* anterior = cabeca;
+    Elemento<T> *anterior = cabeca;
     for (int i = 0; i < posicao - 1; i++) {
       anterior = anterior->getProximo();
     }
@@ -103,7 +97,7 @@ class ListaEnc {
    * \sa adiciona(), adicionaEmOrdem(), adicionaNaPosicao(), retira(),
    * retiraDaPosicao(), retiraDoInicio(), retiraEspecifico()
    */
-  void adicionaNoInicio(const T& dado) {
+  void adicionaNoInicio(const T &dado) {
     auto novo = new Elemento<T>(dado, nullptr);
     if (novo == nullptr) {
       throw ExcecaoListaCheia();
@@ -122,7 +116,7 @@ class ListaEnc {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    Elemento<T>* saiu = cabeca;
+    Elemento<T> *saiu = cabeca;
     cabeca = saiu->getProximo();
     tamanho--;
     delete saiu;
@@ -134,9 +128,7 @@ class ListaEnc {
    * \sa adiciona(), adicionaEmOrdem(), adicionaNaPosicao(), adicionaNoInicio()
    * retiraDaPosicao(), retiraDoInicio(), retiraEspecifico()
    */
-  T retira() {
-    return retiraDaPosicao(tamanho);
-  }
+  T retira() { return retiraDaPosicao(tamanho); }
 
   //! Método para retirar um dado em uma posição específica.
   /*!
@@ -152,11 +144,11 @@ class ListaEnc {
     if (posicao == 0) {
       return retiraDoInicio();
     }
-    Elemento<T>* anterior = cabeca;
+    Elemento<T> *anterior = cabeca;
     for (int i = 0; i < posicao - 2; i++) {
       anterior = anterior->getProximo();
     }
-    Elemento<T>* eliminar = anterior->getProximo();
+    Elemento<T> *eliminar = anterior->getProximo();
     T volta = eliminar->getInfo();
     anterior->setProximo(eliminar->getProximo());
     tamanho--;
@@ -174,7 +166,7 @@ class ListaEnc {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    Elemento<T>* saiu = cabeca;
+    Elemento<T> *saiu = cabeca;
     T volta = saiu->getInfo();
     cabeca = saiu->getProximo();
     delete saiu;
@@ -189,7 +181,7 @@ class ListaEnc {
    * \sa adiciona(), adicionaNoInicio(), adicionaNaPosicao(),
    * adicionaEmOrdem(), retira(), retiraDaPosicao(), retiraDoInicio()
    */
-  T retiraEspecifico(const T& dado) {
+  T retiraEspecifico(const T &dado) {
     return retiraDaPosicao(posicao(dado) + 1);
   }
 
@@ -200,11 +192,11 @@ class ListaEnc {
    * \return um boolean.
    * \sa posicao(), posicaoMem(), retornaDado()
    */
-  bool contem(const T& dado) {
+  bool contem(const T &dado) {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    Elemento<T>* atual = cabeca;
+    Elemento<T> *atual = cabeca;
     for (int i = 0; i < tamanho; i++) {
       if (igual(dado, atual->getInfo())) {
         return true;
@@ -221,11 +213,11 @@ class ListaEnc {
    * \return um boolean.
    * \sa contem(), posicaoMem(), retornaDado()
    */
-  int posicao(const T& dado) const {
+  int posicao(const T &dado) const {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    Elemento<T>* atual = cabeca;
+    Elemento<T> *atual = cabeca;
     for (int i = 0; i < tamanho; i++) {
       if (dado == atual->getInfo()) {
         return i;
@@ -242,12 +234,12 @@ class ListaEnc {
    * \return um ponteiro relacionado ao dado específico.
    * \sa contem(), posicao(), retornaDado()
    */
-  T* posicaoMem(const T& dado) const {
+  T *posicaoMem(const T &dado) const {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
     int posicao = posicao(dado);
-    Elemento<T>* atual = cabeca;
+    Elemento<T> *atual = cabeca;
     for (int i = 0; i < posicao; i++) {
       atual = atual->getProximo();
     }
@@ -264,7 +256,7 @@ class ListaEnc {
     if (listaVazia()) {
       throw ExcecaoListaVazia();
     }
-    Elemento<T>* atual = cabeca;
+    Elemento<T> *atual = cabeca;
     for (int i = 0; i < posicao; i++) {
       atual = atual->getProximo();
     }
@@ -276,7 +268,7 @@ class ListaEnc {
    * \sa ~ListaEnc()
    */
   void destroiLista() {
-    Elemento<T>* atual;
+    Elemento<T> *atual;
     for (int i = 0; i < tamanho; i++) {
       atual = cabeca;
       cabeca = cabeca->getProximo();
@@ -290,9 +282,7 @@ class ListaEnc {
    * \return um boolean.
    * \sa listaCheia()
    */
-  bool listaVazia() const {
-    return tamanho == 0;
-  }
+  bool listaVazia() const { return tamanho == 0; }
 
   //! Método de comparação de igualdade entre dois dados.
   /*!
@@ -300,9 +290,7 @@ class ListaEnc {
    * \param dado2 o segundo dado a ser comparado.
    * \sa maior(), menor()
    */
-  bool igual(T dado1, T dado2) {
-    return dado1 == dado2;
-  }
+  bool igual(T dado1, T dado2) { return dado1 == dado2; }
 
   //! Método de comparação de maioridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
@@ -311,9 +299,7 @@ class ListaEnc {
    * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), menor()
    */
-  virtual bool maior(T dado1, T dado2) const {
-    return dado1 > dado2;
-  }
+  virtual bool maior(T dado1, T dado2) const { return dado1 > dado2; }
 
   //! Método de comparação de minoridade (de acordo com um critério
   //! estabelecido pela classe) entre dois dados.
@@ -322,9 +308,7 @@ class ListaEnc {
    * \param dado2 o segundo dado a ser comparado.
    * \sa igual(), maior()
    */
-  bool menor(T dado1, T dado2) {
-    return dado1 < dado2;
-  }
+  bool menor(T dado1, T dado2) { return dado1 < dado2; }
 
   //! Método para checagem de posição inválida solicitada no vetor.
   /*!
@@ -332,41 +316,31 @@ class ListaEnc {
    * \return um boolean.
    * \sa posicao(), posicaoMem()
    */
-  bool posicaoInvalida(int p) {
-    return p > tamanho || p < 0;
-  }
+  bool posicaoInvalida(int p) { return p > tamanho || p < 0; }
 
   //! Método para retornar o tamanho da lista encadeada.
   /*!
    * \return um inteiro.
    */
-  int getTamanho() {
-    return this->tamanho;
-  }
+  int getTamanho() { return this->tamanho; }
 
   //! Método para retornar o primeiro elemento da lista encadeada.
   /*!
    * \return a cabeça da lista encadeada.
    */
-  Elemento<T>* getCabeca() {
-    return this->cabeca;
-  }
+  Elemento<T> *getCabeca() { return this->cabeca; }
 
   //! Método para modificação direta do tamanho da lista encadeada.
   /*!
    * \param _tamanho o novo tamanho da lista encadeada.
    */
-  void setTamanho(int _tamanho) {
-    this->tamanho = _tamanho;
-  }
+  void setTamanho(int _tamanho) { this->tamanho = _tamanho; }
 
   //! Método para modificação direta da cabeça da lista encadeada.
   /*!
    * \param _cabeca a nova cabeça da lista encadeada.
    */
-  void setCabeca(Elemento<T>* _cabeca) {
-    this->cabeca = _cabeca;
-  }
+  void setCabeca(Elemento<T> *_cabeca) { this->cabeca = _cabeca; }
 };
 
 #endif

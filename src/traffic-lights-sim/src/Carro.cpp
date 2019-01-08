@@ -5,10 +5,6 @@ Carro::Carro() {
   probabilidade = (rand() % 100) + 1;
 }
 
-int Carro::getTamanho() {
-  return tamanho;
-}
+int Carro::getTamanho() { return tamanho; }
 
-int Carro::getProbabilidade() {
-  return probabilidade;
-}
+int Carro::getProbabilidade() { return probabilidade; }

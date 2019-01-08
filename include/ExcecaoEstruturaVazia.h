@@ -12,12 +12,12 @@
 #include <exception>
 
 class ExcecaoEstruturaVazia : public std::exception {
- public:
+public:
   //! Método responsável por descrever o erro relacionado à exceção.
   /*!
    * \return um char*.
    */
-  virtual const char* what() const throw() {
+  virtual const char *what() const throw() {
     return ("Sua estrutura linear está vazia!");
   }
 };

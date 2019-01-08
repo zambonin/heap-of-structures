@@ -10,30 +10,29 @@
 #define NOAVL_HPP_
 #include "ExcecaoDadoNaoEncontrado.h"
 
-template <typename T>
-class NoAVL {
- private:
+template <typename T> class NoAVL {
+private:
   //! Dado de um nó da árvore AVL.
   /*! Tipo genérico que armazena o conteúdo do nó da árvore AVL. */
   T dado;
 
   //! Filho à esquerda de um nó.
   /*! Nó que descreve o filho à esquerda em relação ao nó atual. */
-  NoAVL<T>* esquerda;
+  NoAVL<T> *esquerda;
 
   //! Filho à direita de um nó.
   /*! Nó que descreve o filho à direita em relação ao nó atual. */
-  NoAVL<T>* direita;
+  NoAVL<T> *direita;
 
   //! Altura da árvore.
   /*! Inteiro que armazena a altura total da árvore AVL. */
   int altura;
 
- public:
+public:
   //! Construtor.
   /*! Construtor que cria um nó com conteúdo novo e dois filhos nulos. */
   explicit NoAVL(T dado)
-    : dado(dado), esquerda(nullptr), direita(nullptr), altura(1) {}
+      : dado(dado), esquerda(nullptr), direita(nullptr), altura(1) {}
 
   //! Método para retornar a altura de certo nodo.
   /*!
@@ -41,9 +40,7 @@ class NoAVL {
    * \return um inteiro.
    * \sa arrumarAltura(), fator()
    */
-  int height(NoAVL<T>* nodo) {
-    return nodo ? nodo->altura : 0;
-  }
+  int height(NoAVL<T> *nodo) { return nodo ? nodo->altura : 0; }
 
   //! Método para retornar o fator de balanceamento de certo nodo.
   /*!
@@ -51,7 +48,7 @@ class NoAVL {
    * \return um inteiro.
    * \sa arrumarAltura(), height()
    */
-  int fator(NoAVL<T>* nodo) {
+  int fator(NoAVL<T> *nodo) {
     return height(nodo->direita) - height(nodo->esquerda);
   }
 
@@ -60,7 +57,7 @@ class NoAVL {
    * \param nodo o nodo a ser consertado.
    * \sa fator(), height()
    */
-  void arrumarAltura(NoAVL<T>* nodo) {
+  void arrumarAltura(NoAVL<T> *nodo) {
     int hL = height(nodo->esquerda);
     int hR = height(nodo->direita);
     nodo->altura = (hL > hR ? hL : hR) + 1;
@@ -72,8 +69,8 @@ class NoAVL {
    * \return nodo que representa a nova raiz.
    * \sa rotacao_esquerda(), rotacao_dupla_esquerda(), rotacao_dupla_direita()
    */
-  NoAVL<T>* rotacao_direita(NoAVL<T>* raiz) {
-    NoAVL<T>* auxiliar = raiz->esquerda;
+  NoAVL<T> *rotacao_direita(NoAVL<T> *raiz) {
+    NoAVL<T> *auxiliar = raiz->esquerda;
     raiz->esquerda = 0;
     auxiliar->direita = raiz;
     raiz = auxiliar;
@@ -88,8 +85,8 @@ class NoAVL {
    * \return nodo que representa a nova raiz.
    * \sa rotacao_direita(), rotacao_dupla_esquerda(), rotacao_dupla_direita()
    */
-  NoAVL<T>* rotacao_esquerda(NoAVL<T>* raiz) {
-    NoAVL<T>* auxiliar = raiz->direita;
+  NoAVL<T> *rotacao_esquerda(NoAVL<T> *raiz) {
+    NoAVL<T> *auxiliar = raiz->direita;
     raiz->direita = 0;
     auxiliar->esquerda = raiz;
     raiz = auxiliar;
@@ -104,7 +101,7 @@ class NoAVL {
    * \return nodo que representa a nova raiz.
    * \sa rotacao_esquerda(), rotacao_direita(), rotacao_dupla_esquerda()
    */
-  NoAVL<T>* rotacao_dupla_direita(NoAVL<T>* raiz) {
+  NoAVL<T> *rotacao_dupla_direita(NoAVL<T> *raiz) {
     raiz->direita = rotacao_esquerda(raiz->direita);
     return rotacao_direita(raiz);
   }
@@ -115,7 +112,7 @@ class NoAVL {
    * \return nodo que representa a nova raiz.
    * \sa rotacao_esquerda(), rotacao_direita(), rotacao_dupla_direita()
    */
-  NoAVL<T>* rotacao_dupla_esquerda(NoAVL<T>* raiz) {
+  NoAVL<T> *rotacao_dupla_esquerda(NoAVL<T> *raiz) {
     raiz->esquerda = rotacao_direita(raiz->esquerda);
     return rotacao_esquerda(raiz);
   }
@@ -126,7 +123,7 @@ class NoAVL {
    * \return nodo que representa a nova raiz.
    * \sa inserir(), remover(), removerMinimo()
    */
-  NoAVL<T>* balancear(NoAVL<T>* raiz) {
+  NoAVL<T> *balancear(NoAVL<T> *raiz) {
     arrumarAltura(raiz);
     if (fator(raiz) == 2) {
       if (fator(raiz->direita) < 0) {
@@ -148,7 +145,7 @@ class NoAVL {
    * \return um nodo mínimo à esquerda.
    * \sa remover()
    */
-  NoAVL<T>* minimo(NoAVL<T>* nodo) {
+  NoAVL<T> *minimo(NoAVL<T> *nodo) {
     return nodo->esquerda ? minimo(nodo->esquerda) : nodo;
   }
 
@@ -158,7 +155,7 @@ class NoAVL {
    * \return a nova subárvore balanceada.
    * \sa balancear(), remover()
    */
-  NoAVL<T>* removerMinimo(NoAVL<T>* nodo) {
+  NoAVL<T> *removerMinimo(NoAVL<T> *nodo) {
     if (nodo->esquerda == nullptr) {
       return nodo->direita;
     }
@@ -173,7 +170,7 @@ class NoAVL {
    * \return a nova subárvore balanceada.
    * \sa balancear()
    */
-  NoAVL<T>* inserir(const T& dado, NoAVL<T>* nodo) {
+  NoAVL<T> *inserir(const T &dado, NoAVL<T> *nodo) {
     if (nodo == nullptr) {
       return nodo = new NoAVL<T>(dado);
     }
@@ -193,7 +190,7 @@ class NoAVL {
    * \return a nova subárvore balanceada.
    * \sa balancear(), removerMinimo()
    */
-  NoAVL<T>* remover(const T& dado, NoAVL<T>* nodo) {
+  NoAVL<T> *remover(const T &dado, NoAVL<T> *nodo) {
     if (!nodo) {
       throw ExcecaoDadoNaoEncontrado();
     }
@@ -202,20 +199,19 @@ class NoAVL {
     } else if (dado > nodo->dado) {
       nodo->direita = remover(dado, nodo->direita);
     } else {
-      NoAVL<T>* esq = nodo->esquerda;
-      NoAVL<T>* dir = nodo->direita;
+      NoAVL<T> *esq = nodo->esquerda;
+      NoAVL<T> *dir = nodo->direita;
       delete nodo;
       if (!dir) {
         return esq;
       }
-      NoAVL<T>* min = minimo(dir);
+      NoAVL<T> *min = minimo(dir);
       min->direita = removerMinimo(dir);
       min->esquerda = esq;
       return balancear(min);
     }
     return balancear(nodo);
   }
-
 };
 
 #endif

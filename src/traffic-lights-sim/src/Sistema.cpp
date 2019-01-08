@@ -1,9 +1,9 @@
 #include <Sistema.h>
 
 Sistema::Sistema(int _tempoSemaforo, int _tempoDeExecucao)
-  : tempoSemaforo(_tempoSemaforo), tempoDeExecucao(_tempoDeExecucao) {
-  this->semaforos = new ListaCirc<Semaforo*>();
-  this->pistas = new ListaCirc<Pista*>();
+    : tempoSemaforo(_tempoSemaforo), tempoDeExecucao(_tempoDeExecucao) {
+  this->semaforos = new ListaCirc<Semaforo *>();
+  this->pistas = new ListaCirc<Pista *>();
   this->listaEventos = new ListaDeEventos();
   tempoAtual = 0;
   instanciar();
@@ -40,45 +40,45 @@ void Sistema::instanciar() {
   pistas->adiciona(c1oeste);
   pistas->adiciona(c1leste);
 
-  Pista* vetorPista1[4] = {o1leste, c1leste, n1norte, s1sul};
+  Pista *vetorPista1[4] = {o1leste, c1leste, n1norte, s1sul};
   int probPista1[3] = {80, 10, 10};
-  auto so1leste = new Semaforo(true, static_cast<Pista**>(vetorPista1),
-                               static_cast<int*>(probPista1), tempoSemaforo);
+  auto so1leste = new Semaforo(true, static_cast<Pista **>(vetorPista1),
+                               static_cast<int *>(probPista1), tempoSemaforo);
 
-  Pista* vetorPista2[4] = {c1leste, l1leste, n2norte, s2sul};
+  Pista *vetorPista2[4] = {c1leste, l1leste, n2norte, s2sul};
   int probPista2[3] = {40, 30, 30};
-  auto sc1leste = new Semaforo(true, static_cast<Pista**>(vetorPista2),
-                               static_cast<int*>(probPista2), tempoSemaforo);
+  auto sc1leste = new Semaforo(true, static_cast<Pista **>(vetorPista2),
+                               static_cast<int *>(probPista2), tempoSemaforo);
 
-  Pista* vetorPista3[4] = {c1oeste, o1oeste, s1sul, n1norte};
+  Pista *vetorPista3[4] = {c1oeste, o1oeste, s1sul, n1norte};
   int probPista3[3] = {40, 30, 30};
-  auto sc1oeste = new Semaforo(false, static_cast<Pista**>(vetorPista3),
-                               static_cast<int*>(probPista3), tempoSemaforo);
+  auto sc1oeste = new Semaforo(false, static_cast<Pista **>(vetorPista3),
+                               static_cast<int *>(probPista3), tempoSemaforo);
 
-  Pista* vetorPista4[4] = {s1norte, n1norte, o1oeste, c1leste};
+  Pista *vetorPista4[4] = {s1norte, n1norte, o1oeste, c1leste};
   int probPista4[3] = {10, 10, 80};
-  auto ss1norte = new Semaforo(false, static_cast<Pista**>(vetorPista4),
-                               static_cast<int*>(probPista4), tempoSemaforo);
+  auto ss1norte = new Semaforo(false, static_cast<Pista **>(vetorPista4),
+                               static_cast<int *>(probPista4), tempoSemaforo);
 
-  Pista* vetorPista5[4] = {s2norte, n2norte, c1oeste, l1leste};
+  Pista *vetorPista5[4] = {s2norte, n2norte, c1oeste, l1leste};
   int probPista5[3] = {30, 30, 40};
-  auto ss2norte = new Semaforo(false, static_cast<Pista**>(vetorPista5),
-                               static_cast<int*>(probPista5), tempoSemaforo);
+  auto ss2norte = new Semaforo(false, static_cast<Pista **>(vetorPista5),
+                               static_cast<int *>(probPista5), tempoSemaforo);
 
-  Pista* vetorPista6[4] = {n1sul, s1sul, c1leste, o1oeste};
+  Pista *vetorPista6[4] = {n1sul, s1sul, c1leste, o1oeste};
   int probPista6[3] = {10, 80, 10};
-  auto sn1sul = new Semaforo(false, static_cast<Pista**>(vetorPista6),
-                             static_cast<int*>(probPista6), tempoSemaforo);
+  auto sn1sul = new Semaforo(false, static_cast<Pista **>(vetorPista6),
+                             static_cast<int *>(probPista6), tempoSemaforo);
 
-  Pista* vetorPista7[4] = {n2sul, s2sul, l1oeste, c1oeste};
+  Pista *vetorPista7[4] = {n2sul, s2sul, l1oeste, c1oeste};
   int probPista7[3] = {30, 40, 30};
-  auto sn2sul = new Semaforo(false, static_cast<Pista**>(vetorPista7),
-                             static_cast<int*>(probPista7), tempoSemaforo);
+  auto sn2sul = new Semaforo(false, static_cast<Pista **>(vetorPista7),
+                             static_cast<int *>(probPista7), tempoSemaforo);
 
-  Pista* vetorPista8[4] = {l1oeste, c1oeste, s2sul, n2norte};
+  Pista *vetorPista8[4] = {l1oeste, c1oeste, s2sul, n2norte};
   int probPista8[3] = {30, 30, 40};
-  auto sl1oeste = new Semaforo(false, static_cast<Pista**>(vetorPista8),
-                               static_cast<int*>(probPista8), tempoSemaforo);
+  auto sl1oeste = new Semaforo(false, static_cast<Pista **>(vetorPista8),
+                               static_cast<int *>(probPista8), tempoSemaforo);
 
   semaforos->adiciona(sn1sul);
   semaforos->adiciona(sn2sul);
@@ -98,10 +98,10 @@ void Sistema::iniciar() {
 }
 
 void Sistema::gerarEventosCarro() {
-  Pista* pistaAtual;
+  Pista *pistaAtual;
   int tempoInterno;
   int tempoProximoEvento;
-  Evento* evento;
+  Evento *evento;
   for (int i = 0; i < pistas->getTamanho(); i++) {
     pistaAtual = pistas->mostra(i);
     if (pistaAtual->eFonte()) {
@@ -121,16 +121,16 @@ void Sistema::gerarEventosCarro() {
 }
 
 void Sistema::gerarEventosChegadaSemaforo() {
-  Pista* atual;
-  Semaforo* semaforo;
-  Evento* evento;
+  Pista *atual;
+  Semaforo *semaforo;
+  Evento *evento;
   int tempoChegada, tempoProximoEvento;
   int tamanhoOriginal = listaEventos->getTamanho();
   for (int i = 0; i < tamanhoOriginal; i++) {
     if (listaEventos->retornaDado(i)->getTipo() == 0) {
       tempoChegada = listaEventos->retornaDado(i)->getTempo();
-      atual = static_cast<Pista*>(
-        listaEventos->retornaDado(i)->getRelacionado());
+      atual =
+          static_cast<Pista *>(listaEventos->retornaDado(i)->getRelacionado());
       semaforo = procurarPorSemaforo(atual);
       tempoProximoEvento = atual->tempoDeChegada(tempoChegada);
       if (tempoProximoEvento <= tempoDeExecucao) {
@@ -142,10 +142,10 @@ void Sistema::gerarEventosChegadaSemaforo() {
 }
 
 void Sistema::gerarEventosAberturaSemaforos() {
-  Semaforo* atual;
-  Semaforo* proximo;
-  Evento* evento;
-  Evento* evento2;
+  Semaforo *atual;
+  Semaforo *proximo;
+  Evento *evento;
+  Evento *evento2;
   int tempoInterno, tempoProximoEvento;
   for (int i = 0; i < semaforos->getTamanho(); i += 2) {
     tempoInterno = tempoAtual;
@@ -164,13 +164,13 @@ void Sistema::gerarEventosAberturaSemaforos() {
   }
 }
 
-void Sistema::executarCarroChegouNoSemaforo(Evento* eventoAtual) {
-  Evento* evento;
-  Semaforo* semaforo = static_cast<Semaforo*>(eventoAtual->getObjeto());
+void Sistema::executarCarroChegouNoSemaforo(Evento *eventoAtual) {
+  Evento *evento;
+  auto *semaforo = static_cast<Semaforo *>(eventoAtual->getObjeto());
   tempoAtual = eventoAtual->getTempo();
   int tempoProximoEvento = -1;
   try {
-    Pista* proximaPista = semaforo->passaCarro();
+    Pista *proximaPista = semaforo->passaCarro();
     if (proximaPista == semaforo->retornaPistaLocal()) {
       if (tempoAtual < semaforo->retornarTempoQueVaiAbrir()) {
         tempoProximoEvento = tempoAtual + 1;
@@ -184,7 +184,7 @@ void Sistema::executarCarroChegouNoSemaforo(Evento* eventoAtual) {
         tempoProximoEvento = proximaPista->tempoDeChegada(tempoAtual);
         evento = new Evento(tempoProximoEvento, proximaPista, nullptr, 3);
       } else {
-        Semaforo* semaforo = procurarPorSemaforo(proximaPista);
+        Semaforo *semaforo = procurarPorSemaforo(proximaPista);
         tempoProximoEvento = proximaPista->tempoDeChegada(tempoAtual);
         evento = new Evento(tempoProximoEvento, semaforo, nullptr, 2);
       }
@@ -198,9 +198,9 @@ void Sistema::executarCarroChegouNoSemaforo(Evento* eventoAtual) {
   }
 }
 
-Semaforo* Sistema::procurarPorSemaforo(Pista* pista) {
+Semaforo *Sistema::procurarPorSemaforo(Pista *pista) {
   for (int i = 0; i < semaforos->getTamanho(); i++) {
-    Semaforo* atual = semaforos->mostra(i);
+    Semaforo *atual = semaforos->mostra(i);
     if (atual->retornaPistaLocal() == pista) {
       return atual;
     }
@@ -210,38 +210,38 @@ Semaforo* Sistema::procurarPorSemaforo(Pista* pista) {
 
 void Sistema::executarEventos() {
   for (int i = 0; i < listaEventos->getTamanho(); i++) {
-    Evento* eventoAtual = listaEventos->retornaDado(i);
+    Evento *eventoAtual = listaEventos->retornaDado(i);
     if (tempoAtual >= tempoDeExecucao) {
       break;
     }
     switch (eventoAtual->getTipo()) {
-      case 0: {
-        Pista* pista = static_cast<Pista*>(eventoAtual->getRelacionado());
-        Carro* carro = static_cast<Carro*>(eventoAtual->getObjeto());
-        pista->adicionaCarro(carro);
-        tempoAtual = eventoAtual->getTempo();
-        break;
-      }
-      case 1: {
-        Semaforo* semaforo = static_cast<Semaforo*>(eventoAtual->getObjeto());
-        semaforo->trocarAberto(tempoAtual);
-        tempoAtual = eventoAtual->getTempo();
-        break;
-      }
-      case 2: {
-        executarCarroChegouNoSemaforo(eventoAtual);
-        break;
-      }
-      case 3: {
-        Pista* pista = static_cast<Pista*>(eventoAtual->getObjeto());
-        pista->removeCarro();
-        tempoAtual = eventoAtual->getTempo();
-        break;
-      }
-      default: {
-        std::cout << "Nunca deve chegar aqui se tudo estiver correndo certo."
-                  << std::endl;
-      }
+    case 0: {
+      auto *pista = static_cast<Pista *>(eventoAtual->getRelacionado());
+      auto *carro = static_cast<Carro *>(eventoAtual->getObjeto());
+      pista->adicionaCarro(carro);
+      tempoAtual = eventoAtual->getTempo();
+      break;
+    }
+    case 1: {
+      auto *semaforo = static_cast<Semaforo *>(eventoAtual->getObjeto());
+      semaforo->trocarAberto(tempoAtual);
+      tempoAtual = eventoAtual->getTempo();
+      break;
+    }
+    case 2: {
+      executarCarroChegouNoSemaforo(eventoAtual);
+      break;
+    }
+    case 3: {
+      auto *pista = static_cast<Pista *>(eventoAtual->getObjeto());
+      pista->removeCarro();
+      tempoAtual = eventoAtual->getTempo();
+      break;
+    }
+    default: {
+      std::cout << "Nunca deve chegar aqui se tudo estiver correndo certo."
+                << std::endl;
+    }
     }
     listaEventos->retiraEspecifico(eventoAtual);
   }
@@ -250,7 +250,7 @@ void Sistema::executarEventos() {
 
 void Sistema::contarCarros() {
   for (int i = 0; i < pistas->getTamanho(); i++) {
-    Pista* pista = pistas->mostra(i);
+    Pista *pista = pistas->mostra(i);
     if (pista->eFonte()) {
       carrosQueEntraram = carrosQueEntraram + pista->retornaCarrosQueEntraram();
     } else {
@@ -271,10 +271,8 @@ void Sistema::finalizarPrograma() {
   std::cout << carrosQueEntraram << " carros entraram no sistema." << std::endl;
   std::cout << carrosQuePassaram << " carros passaram pelo sistema."
             << std::endl;
-  std::cout << "Vazão: "
-            << percent(carrosQuePassaram, carrosQueEntraram)
+  std::cout << "Vazão: " << percent(carrosQuePassaram, carrosQueEntraram)
             << "%." << std::endl;
-  std::cout << "Ratio: "
-            << percent(carrosQuePassaram, tempoDeExecucao)
+  std::cout << "Ratio: " << percent(carrosQuePassaram, tempoDeExecucao)
             << " carros por segundo" << std::endl;
 }
